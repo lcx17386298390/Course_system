@@ -1,0 +1,39 @@
+.qFicReen{ min-width:1280px; width:100%; background:#f3f5f6; padding:20px 0;}
+.qFicReen .qWrap{ width:1280px; margin:0 auto;}
+.qFicReen_title{ width:130px; height:34px; margin-bottom:20px; background:url(../image/qFicReen_title.png) no-repeat;}
+.qFicReen_item{ min-height:23px; line-height:23px; padding-left:80px; font-size:14px; position:relative;}
+.qFicReen_item+.qFicReen_item{ margin-top:20px;}
+.qFicReen_name{ width:80px; min-height:23px; font-weight:bold; display:block; position:absolute; left:0; top:0;}
+.qFicReen_con li{ padding:0 10px; margin-bottom:10px; margin-right:24px; float:left;}
+.qFicReen_con li.active{ background:#d1e9ff; color:#1e7dcc; border-radius:3px;}
+.qFicReen_con li.active a{ color:#1e7dcc;}
+
+
+.qkcList{ width:1280px; margin:40px auto 0;}
+.qkcListPic{ margin-left:-27px;}
+.qkcListPic li{ margin:0 0 28px 27px; width:234px; height:243px; float:left; cursor:pointer;}
+.qkcListPic .qExpress_padd{ width:234px; height:243px; background:#FFFFFF; border-radius:6px; overflow:hidden; box-shadow:rgba(174,174,1174,.2) 0 4px 6px;}
+.qkcListPic .qExpress_pic{ width:234px; height:141px; overflow:hidden; position:relative;} 
+.qkcListPic .qExpress_pic img{ width:234px; height:141px;}
+.qkcListPic .qTips_one{ width:66px; height:19px; background:url() no-repeat; overflow:hidden; position:absolute; right:0; top:0;}
+.qkcListPic .qTips_two{ width:66px; height:19px; background:url() no-repeat 0 -20px; overflow:hidden; position:absolute; right:0; top:0;}
+.qkcListPic .qExpress_dl{ min-height:66px; padding:6px 10px 0;}
+.qkcListPic .qExpress_dl dt{ line-height:26px; font-size:14px; color:#000000; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.qkcListPic .qExpress_dl dt a{ color:#000000;}
+.qkcListPic .qExpress_dl dd{ line-height:26px; font-size:12px; color:#999999; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.qkcListPic .qExpress_state{ height:26px; line-height:26px; padding:0 10px;}
+.qkcListPic .qExpress_state .colorBlue{ color:#3686e9;}
+.qkcListPic .qExpress_state .colorGray{ color:#999999;}
+.qkcListPic .qExpress_state .colorGreen{ color:#2bb73c;}
+
+
+#page { margin:20px auto; color:#666; display:block; text-align:center;}
+#page li { display:inline-block; min-width:30px; height:28px; cursor:pointer; color:#666; font-size:13px; line-height:28px; background-color:#f9f9f9; border:1px solid #dce0e0; text-align:center; margin:0 4px; -webkit-appearance:none; -moz-appearance:none; appearance:none;}
+.xl-nextPage,.xl-prevPage { width:60px; color:#0073A9; height:28px;}
+#page li.xl-disabled { opacity:.5; cursor:no-drop;}
+#page li.xl-disabled:hover{ background-color:#f9f9f9 !important; border:1px solid #dce0e0 !important; color:#666 !important;}
+#page li.xl-active { background-color:#0073A9; border-color:#0073A9; color:#FFF}
+#page li:hover{ background-color:#0073A9 !important; border-color:#0073A9; color:#FFF}
+#page li.xl-jumpText { background-color:rgba(0,0,0,0); border-color:rgba(0,0,0,0); opacity:1;}
+#page li.xl-jumpText:hover{ background-color:rgba(0,0,0,0) !important; border-color:rgba(0,0,0,0) !important;}
+#page li.xl-jumpButton{ padding:0 5px;}

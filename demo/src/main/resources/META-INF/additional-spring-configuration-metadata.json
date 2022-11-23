@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "logging",
+      "type": "java.lang.String",
+      "description": "Description for logging."
+    },
+    {
+      "name": "mybatis.configuration.map-underscore-to-camel-case",
+      "type": "java.lang.String",
+      "description": "Description for mybatis.configuration.map-underscore-to-camel-case."
+    }
+  ] }

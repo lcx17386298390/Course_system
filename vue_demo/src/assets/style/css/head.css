@@ -1,0 +1,42 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font: 12px/1.5 Microsoft YaHei, SimSun, Arial, Helvetica, sans-serif;
+    color: #333;
+    background: #FFF;
+}
+
+.qHeader{ min-width:1280px;background:#FFFFFF;padding:7px 0;}
+.qHeader .head{ width:1280px; height:66px; margin:0 auto;}
+.qHeader .qLogo{ width:134px; height:46px; margin:10px 0 0 0; background:url(../image/logl.jpg) no-repeat; background-size: 134px 46px ; display:block;}
+.qHeader .funList{ margin-left:42px; height:66px; line-height:66px; font-size:16px; color:#333333; float: left;}
+.qHeader .funList li{ margin-left:24px; float:left;}
+.qHeader .funList li a{ color:#333333;}
+.qHeader .funList li.active,.qHeader .funList li a:hover,.qHeader .funList li.active a,.qHeader .funList li.active a:hover{ color:#1e7dcc;}
+.qHeader .qSearch{ width:344px; height:30px; margin-top:18px; background:#f3f3f3; border-radius:30px; overflow:hidden;}
+.qHeader .qSearch img{ width:22px; height:22px; float:left; border-radius:50%; margin-right:10px;}
+.qHeader .qSearch_input{ width:240px; height:20px; line-height:20px; padding:5px 20px; border:0; background:none; font-size:14px; color:#333333;}
+.qHeader .qSearch_input::-webkit-input-placeholder {color: #bcbcbc;text-overflow:ellipsis;}
+.qHeader .qSearch_input:-moz-placeholder{color:#bcbcbc !important;text-overflow:ellipsis;}
+.qHeader .qSearch_input::-moz-placeholder{color:#bcbcbc !important;text-overflow:ellipsis;}
+.qHeader .qSearch_input:-ms-input-placeholder{color:#bcbcbc !important;text-overflow:ellipsis;}
+.qHeader .qSearch_btn{ width:60px; height:30px; background:#187fd3 url(../image/search-ico.png) no-repeat center center; border-radius:30px; border:0 none; cursor:pointer;}
+
+.qHeader .qLogin{ height:22px; line-height:22px; font-size:14px; color:#333333; margin:22px 0 0 30px;}
+.qHeader .qLogin img{ width:22px; height:22px; float:left; border-radius:50%; margin-right:10px;}
+.qHeader .qLogin_input{ width:240px; height:20px; line-height:20px; padding:5px 20px; border:0; background:none; font-size:14px; color:#333333;}
+.qHeader .qLogin_input::-webkit-input-placeholder {color: #bcbcbc;text-overflow:ellipsis;}
+.qHeader .qLogin_input:-moz-placeholder{color:#bcbcbc !important;text-overflow:ellipsis;}
+.qHeader .qLogin_input::-moz-placeholder{color:#bcbcbc !important;text-overflow:ellipsis;}
+.qHeader .qLogin_input:-ms-input-placeholder{color:#bcbcbc !important;text-overflow:ellipsis;}
+/* .qHeader .qLogin_bnt{ width:60px; height:30px; background:#187fd3 url(../images/search-ico.png) no-repeat center center; border-radius:30px; border:0 none; cursor:pointer;} */
+ul,ol{list-style-type:none;}
+a{color:#333; text-decoration:none;}
+.fl{float:left;}
+.fr{float:right;}
+
+input,select,textarea{vertical-align:middle; outline:none; resize:none; font-family:Microsoft YaHei;}
+.qHeader .funList{ margin-left:42px; height:66px; line-height:66px; font-size:16px; color:#333333;}

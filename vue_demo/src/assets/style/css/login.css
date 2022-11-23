@@ -1,0 +1,210 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 12px/1.5 微软雅黑, 黑体, Arial, Helvetica, sans-serif;
+    overflow-x: auto;
+}
+
+.default-login .left {
+    width: 540px;
+    height: 100%;
+    padding: 68px 90px 51px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/*手机号登录和机构登录切换*/
+.login-tab-box .tab-head {
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.login-tab-box .tab-head .tab-t.current {
+    color: #181E33;
+    border-color: #3A8BFF;
+}
+
+.login-tab-box .tab-head .tab-t {
+    /* float: left; */
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    color: #C7C8D4;
+    border-bottom: 2px solid #F2F2F2;
+    padding-bottom: 12px;
+
+}
+
+.login-tab-box .tab-list {
+    display: none;
+}
+
+.lg-container .lg-item {
+    width: 360px;
+    line-height: 48px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 24px;
+    font-size: 14px;
+    color: #181E33;
+    padding: 0;
+    position: relative;
+    /**  密码强中弱 标识*/
+}
+
+/* .loginBtn{
+    margin-top: 40px;
+} */
+
+.margin-btm24 {
+    margin-bottom: 24px;
+}
+
+.default-login .item-pwd .ipt-pwd {
+    padding-right: 140px;
+}
+
+.lg-container .lg-item input {
+    width: 100%;
+    height: 48px;
+    vertical-align: top;
+    background: #FFFFFF;
+    border: 1px solid #E3E8F0;
+    outline: none;
+    font-size: 14px;
+    color: #181E33;
+    -webkit-border-radius: 24px;
+    border-radius: 24px;
+    padding: 0 24px 0 54px;
+    box-sizing: border-box;
+}
+
+.default-login .item-pwd .icon-eye {
+    position: absolute;
+    top: 0;
+    right: 110px;
+}
+
+.lg-container .lg-item .pos-r24 {
+    position: absolute;
+    top: 0;
+    right: 24px;
+}
+
+.col-lightblue {
+    color: #91A0B5;
+}
+
+/**手机*/
+.icon-tel:before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url("../image/icon-tel.png") no-repeat center;
+    background-size: cover;
+    vertical-align: middle;
+}
+
+/**密码锁*/
+.icon-pwd:before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url("../image/icon-password.png") no-repeat center;
+    background-size: cover;
+}
+
+/**闭眼*/
+.icon-eye-close:before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url("../image/icon-eye-close.png") no-repeat center;
+    background-size: cover;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/**睁眼*/
+.icon-eye-open:before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url("../image/icon-eye-open.png") no-repeat center;
+    background-size: cover;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.lg-container .lg-item:before {
+    position: absolute;
+    top: 15px;
+    left: 24px;
+}
+
+.btns-box {
+    position: relative;
+}
+
+.lg-container .btn-big-blue {
+    width: 360px;
+    height: 48px;
+    background: url("../image/loginbtn.png") no-repeat 0 0;
+    background-size: cover;
+    box-shadow: 0 3px 12px 0 rgba(39, 125, 255, 0.3);
+    border-radius: 24px;
+    font-size: 18px;
+    color: #ffffff;
+    outline: none;
+    margin-top: 40px;
+    cursor: pointer;
+    border: none;
+}
+
+.pd-lr-24 {
+    padding: 0 24px;
+}
+
+.col-blue {
+    color: #3A8BFF;
+}
+
+.fl {
+    float: left
+}
+
+.fr {
+    float: right
+}
+
+/** 默认登录方式的样式-----start */
+.default-login {
+    width: 900px;
+    height: 584px;
+    overflow: hidden;
+    box-shadow: 0 0 20px 0 rgba(175, 187, 204, 0.15);
+    background: #ffffff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    border-radius: 16px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.Agreement{text-align:center;font-size: 12px;color: #A8A8B3;position: absolute;left:0px;bottom: 30px;width: 100%;}
+.Agreement a{display:inline-block;padding:0 5px;color:#3A8BFF}
+.lg-container .lg-item .pd-right135 {padding-right: 135px;}

@@ -1,0 +1,485 @@
+*{margin:0; padding:0;}
+html, body ,#app{
+    height: 100%;
+}
+body{font:12px/1.5 PingFangSC,微软雅黑, 黑体, Arial, Helvetica, sans-serif;overflow-x: auto;-webkit-font-smoothing: antialiased;}
+
+
+.main-def-w {
+    width: 540px;
+    height: 600px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #ffffff;
+    box-shadow: 0px 0px 20px 0px rgba(175, 187, 204, 0.2);
+    border-radius: 16px;
+    padding: 88px 90px 92px;
+}
+
+.margin-btm24 {
+    margin-bottom: 24px;
+}
+
+.mesDiv1{
+    height: 380px;
+}
+.mesDiv2{
+    height: 380px;
+}
+
+/**登录模块公共样式------start*/
+.lg-container {
+    position: relative;
+    height: 100%;
+    background: #F2F4F7;
+    border-top: 1px solid #F2F4F7;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.lg-container .main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    margin: 0 auto;
+}
+
+.lg-container .btn-big-blue {
+    width: 360px;
+    height: 48px;
+    /* background: url("/images/fanya/login/loginbtn.png") no-repeat 0 0; */
+    background-size: cover;
+    box-shadow: 0 3px 12px 0 rgba(39, 125, 255, 0.3);
+    border-radius: 24px;
+    font-size: 18px;
+    color: #ffffff;
+    outline: none;
+    /* margin-top: 0; */
+    cursor: pointer;
+    border: none;
+}
+
+.lg-container .btn-big-blue:hover {
+    background-position:0 -48px;
+    background-size: cover;
+}
+
+.lg-container .btn-big-blue:active {
+     background-position:0 -96px;
+    background-size: cover;
+}
+
+.lg-container .btn-big-blue.disable {
+    /* background: url("/images/fanya/login/bg-btn-disable.png") no-repeat center; */
+    background-size: cover;
+}
+
+.lg-container .lg-item {
+    width: 360px;
+    line-height: 48px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 24px;
+    font-size: 14px;
+    color: #181E33;
+    padding: 0;
+    position: relative;
+    /**  密码强中弱 标识*/
+}
+
+.lg-container .lg-item:before {
+    position: absolute;
+    top: 15px;
+    left: 24px;
+}
+
+.lg-container .lg-item input {
+    width: 100%;
+    height: 48px;
+    vertical-align: top;
+    background: #FFFFFF;
+    border: 1px solid #E3E8F0;
+    outline: none;
+    font-size: 14px;
+    color: #181E33;
+    -webkit-border-radius: 24px;
+    border-radius: 24px;
+    padding: 0 24px 0 54px;
+    box-sizing: border-box;
+}
+
+.lg-container .lg-item input:focus {
+    border: 1px solid #3A8BFF;
+    background: #ffffff;
+}
+
+.lg-container .lg-item .pd-right60 {
+    padding-right: 60px;
+}
+
+.lg-container .lg-item .pos-r24 {
+    position: absolute;
+    top: 0;
+    right: 24px;
+}
+
+.lg-container .lg-item .pwd-rule {
+    font-size: 12px;
+    color: #A8A8B3;
+    padding-left: 24px;
+    line-height: 1;
+    margin-top: 6px;
+}
+
+.lg-container .lg-item .pwd-diff-list {
+    padding-left: 24px;
+    line-height: 1;
+}
+
+.lg-container .lg-item .pwd-diff-list > a {
+    display: inline-block;
+    width: 40px;
+    text-align: center;
+    margin-right: 4px;
+    padding-top: 10px;
+    font-size: 12px;
+    color: #A8A8B3;
+}
+
+.lg-container .lg-item .pwd-diff-list > a i {
+    display: inline-block;
+    width: 40px;
+    height: 6px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    background: #E2E4EF;
+}
+
+.lg-container .lg-item .pwd-diff-list > a.diff1 {
+    color: #181e33;
+}
+
+.lg-container .lg-item .pwd-diff-list > a.diff1 > i {
+    background: linear-gradient(90deg, #64aaff, #6494ff);
+}
+
+.lg-container .lg-item .pwd-diff-list > a.diff2 {
+    color: #181e33;
+}
+
+.lg-container .lg-item .pwd-diff-list > a.diff2 > i {
+    background: linear-gradient(90deg, #638fff, #6077ff);
+}
+
+.lg-container .lg-item .pwd-diff-list > a.diff3 {
+    color: #181e33;
+}
+
+.lg-container .lg-item .pwd-diff-list > a.diff3 > i {
+    background: linear-gradient(90deg, #6073ff, #5d5bff);
+}
+
+.lg-container input:focus {
+    border: 1px solid #3A8BFF;
+    background: #ffffff;
+}
+
+.lg-container .item-tel {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.lg-container .item-tel .tel-area {
+    display: inline-block;
+    width: 100px;
+    height: 48px;
+    line-height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #e3e8f0;
+    border-radius: 24px;
+    padding-left: 24px;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #646873;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.lg-container .item-tel .icon-down:after {
+    content: '';
+    display: inline-block;
+    width: 11px;
+    height: 100%;
+    background: url("../image/icon-down.png") no-repeat center;
+    background-size: 100%;
+    position: absolute;
+    right: 20px;
+    top: 0;
+}
+
+.lg-container .item-tel .icon-up:after {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.lg-container .item-tel .ipt-focus {
+    width: 248px;
+    height: 48px;
+    outline: none;
+    background: #ffffff;
+    border: 1px solid #e3e8f0;
+    -webkit-border-radius: 24px;
+    border-radius: 24px;
+    font-size: 14px;
+    color: #181E33;
+    padding: 0 24px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.lg-container .item-tel .ipt-focus:focus {
+    border: 1px solid #3A8BFF;
+    background: #ffffff;
+}
+
+
+.lg-container .item-tel.error-tip .err-txt {
+    left: 112px;
+}
+
+.lg-container .error-tip {
+    position: relative;
+}
+
+.lg-container .error-tip > input {
+    border: 1px solid #FF5152 !important;
+    background: #FFFFFF !important;
+}
+
+.lg-container .error-tip .err-txt {
+    font-size: 12px;
+    line-height: 1;
+    color: #FF5152;
+    padding: 6px 0 0 24px;
+    position: absolute;
+    /*top: 48px;*/
+    bottom: -18px;
+}
+
+
+.lg-container .lg-top {
+    line-height: 20px;
+}
+
+.lg-container .lg-top .back {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.lg-container .lg-top .service {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+    color: #91A0B5;
+    outline: none;
+    z-index: 2;
+}
+
+.lg-title {
+    color: #181E33;
+    font-size: 20px;
+    margin-bottom: 44px;
+}
+
+.filter-list {
+    display: none;
+    width: 324px;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    /*padding: 7px 2px;*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #f7f8fa;
+    z-index: 2;
+    background: #FFFFFF;
+    box-shadow: 0 2px 12px 0 #AFBBCC;
+    border-radius: 6px;
+}
+
+.filter-list .list {
+    max-height: 252px;
+    overflow-y: auto;
+}
+
+.filter-list .dataSearch_bnt {
+    display: inline-block;
+    /* background: url("/images/fanya/login/icon-search.png") no-repeat center; */
+    background-size: cover;
+    top: 9px;
+}
+
+.filter-list li {
+    text-align: left;
+    font-size: 14px;
+    color: #181E33;
+    line-height: 40px;
+    height: 40px;
+    padding: 0 12px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.filter-list li:hover, .filter-list li:active, .filter-list li.current {
+    background: #F7FAFC;
+    color: #3A8BFF;
+}
+
+.filter-list li:hover span, .filter-list li:active span, .filter-list li.current span {
+    color: #3A8BFF;
+}
+
+.filter-list li .fl {
+    color: #181E33;
+}
+
+.filter-list li .fr {
+    color: #646873;
+}
+
+.filter-list .li-search {
+    padding: 9px 13px;
+}
+
+.filter-list .li-search .dataSearch {
+    width: 100%;
+}
+
+.filter-list .li-search .dataSearch .dataSearch_input {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.filter-list .li-search:hover {
+    background: #ffffff;
+}
+
+/**美化滚动条*/
+.beat-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.beat-scroll::-webkit-scrollbar-track {
+    background-color: #ffffff;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+}
+
+.beat-scroll::-webkit-scrollbar-thumb {
+    width: 6px;
+    background-color: #E6E6E6;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+}
+
+
+/**获取验证码-input*/
+.item-getcode .ipt-code {
+    padding-right: 130px !important;
+}
+
+.item-getcode .col-gray {
+    color: #91A0B5;
+}
+
+.item-getcode .before-reget {
+    display: none;
+}
+
+/**验证码icon*/
+.icon-verify:before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url("../image/icon-verify.png") no-repeat center;
+    background-size: cover;
+}
+
+
+/*搜索*/
+.dataSearch {
+    width: 200px;
+    height: 36px;
+    border-radius: 40px;
+    position: relative
+}
+
+.dataSearch_input {
+    width: 170px;
+    height: 34px;
+    font-size: 14px;
+    color: #181E33;
+    border: 1px solid #E5E5E5;
+    background: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    padding: 0 14px;
+    border-radius: 40px;
+}
+
+.dataSearch_bnt {
+    width: 18px;
+    height: 18px;
+    background: url(../image/icon-search.png) no-repeat;
+    border: 0 none;
+    cursor: pointer;
+    position: absolute;
+    right: 17px;
+    top: 7px;
+    z-index: 3;
+    outline: none
+}
+
+.dataSearch_input:hover {
+    border: 1px solid #CCDEF3;
+}
+
+.dataSearch_input:focus {
+    outline: none;
+    border: 1px solid #CCDEF3;
+    box-shadow: 0 0 4px 0 #75BAFF;
+    border-radius: 40px;
+}
