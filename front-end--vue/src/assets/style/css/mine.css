@@ -33,6 +33,14 @@ html, body, h1, h2, h3, h4, h5, h6, div, dl, dt, dd, ul, ol, li, p, blockquote, 
     color: #333;
     outline: 0;
 }
+.mineView {
+  height: 332px;
+  width: 750px;
+  box-shadow: 0px 1px 2px #eaeaea;
+  border: 1px solid #eaeaea;
+  border-top: none;
+  background-color: #fff;
+}
 .m-center .m-tab-s {
     height: 30px;
     width: 100%;

@@ -1,6 +1,6 @@
 package com.evan.demo.service;
 
-import com.evan.demo.mapper.GetCourseMapper;
+import com.evan.demo.mapper.CourseMapper;
 import com.evan.demo.pojo.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,9 +11,9 @@ import java.util.List;
 @Service
 public class CoummentSortCourseService {
     @Autowired
-    GetCourseMapper getCourse;
+    CourseMapper courseMapper;
 
     public List<Course> getCommentSortCourse(){
-        return getCourse.getCommentSortCourse();
+        return courseMapper.getCommentSortCourse();
     }
 }

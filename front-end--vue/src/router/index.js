@@ -8,6 +8,12 @@ import CourseList from "../components/CourseList.vue"
 import LessonPage from "../components/LessonPage.vue"
 import Register from "../components/Register.vue"
 import Test from "../components/Test.vue"
+import Collection from "../components/Collection.vue"
+import PlayRecord from "../components/PlayRecord.vue"
+import Learned from "../components/Learned.vue"
+import Create from "../components/Create.vue"
+import myMes from "../components/MyMes.vue"
+import coursePage from "../components/CoursePage.vue"
 
 export default new VueRouter({
     mode: 'hash',
@@ -43,7 +49,29 @@ export default new VueRouter({
             children:[
                 {
                     path:"/",
-                    component: Mine
+                    component: Mine,
+                    children: [
+                        {
+                            path: "myCollection",
+                            component: Collection
+                        },
+                        {
+                            path: "myPlayRecord",
+                            component: PlayRecord
+                        },
+                        {
+                            path: "myLearned",
+                            component: Learned
+                        },
+                        {
+                            path: "myCreated",
+                            component: Create
+                        },
+                        {
+                            path: "myMes",
+                            component: myMes
+                        }
+                    ]
                 }
             ]
         },
@@ -74,6 +102,16 @@ export default new VueRouter({
         {
             path: '/test',
             component: Test
+        },
+        {
+            path: '/coursePage/:courseNumber',
+            component: Home,
+            children: [
+                {
+                    path: "/",
+                    component: coursePage
+                }
+            ]
         }
     ]
 })

@@ -5,10 +5,13 @@ const login = {
         let data
         await axios.post("/login",params)
             .then(res=>{
-                if(res.status == 200){
+                if(res.data == 200){
                     data = res
+                    setTimeout(()=>{
+                        window.location.href="/"
+                    },500)
                 }else{
-                    console.log("登录数据访问错误")
+                    alert("登录错误")
                 }
             })
             .catch(error=>{

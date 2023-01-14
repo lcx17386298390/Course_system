@@ -72,7 +72,7 @@
 			</div>
 		</div>
 
-		<!--个性推荐 start-->
+		<!--个性推荐 （甲方自做算法接口）start-->
 		<div class="qnewCourse snf-page">
 			<div class="qTitle">
 				<h2 class="ico_newCourse fl"></h2>
@@ -81,17 +81,17 @@
 				<!-- 首位推荐 -->
 				<div class="qExpress_cack fl">
 					<div class="qExpress_padd qNima">
-						<div class="qExpress_pic"><a href="https://www.xueyinonline.com/detail/206706882"><img
+						<div class="qExpress_pic"><a href="#"><img
 									src=""></a>
 							<span></span>
 						</div>
 						<dl class="qExpress_dl">
-							<dt><a href="https://www.xueyinonline.com/detail/206706882">建筑工程经济</a></dt>
-							<dd>杨凌职业技术学院 | 王华</dd>
+							<dt><a href="#">xxx</a></dt>
+							<dd>xxx</dd>
 						</dl>
 						<div class="qExpress_state">
 							<span class="colorBlue fl">进行中</span>
-							<span class="colorGray fr">372人已学</span>
+							<span class="colorGray fr">xxx人已学</span>
 						</div>
 					</div>
 				</div>
@@ -100,73 +100,73 @@
 					<ul class="clearAfter">
 						<li>
 							<div class="qExpress_padd qNima">
-								<div class="qExpress_pic"><a href="https://www.xueyinonline.com/detail/228586727"><img
-											src="/images/6f0203d00029bb436ec2e19dc6319c15.jpg"></a>
+								<div class="qExpress_pic"><a href="#"><img
+											src=""></a>
 									<span></span>
 								</div>
 								<dl class="qExpress_dl">
-									<dt><a href="https://www.xueyinonline.com/detail/228586727">电子商务数据分析基础</a></dt>
-									<dd>乌鲁木齐职业大学 | 慕颜如</dd>
+									<dt><a href="#">xxx</a></dt>
+									<dd>xxx</dd>
 								</dl>
 							</div>
 						</li>
 						<li>
 							<div class="qExpress_padd qNima">
-								<div class="qExpress_pic"><a href="https://www.xueyinonline.com/detail/227116683"><img
+								<div class="qExpress_pic"><a href="#"><img
 											src=""></a>
 									<span></span>
 								</div>
 								<dl class="qExpress_dl">
-									<dt><a href="https://www.xueyinonline.com/detail/227116683">单片机应用技术</a></dt>
-									<dd>烟台汽车工程职业学院 | 李晓艳</dd>
+									<dt><a href="#">xxx</a></dt>
+									<dd>xxx</dd>
 								</dl>
 							</div>
 						</li>
 						<li>
 							<div class="qExpress_padd qNima">
-								<div class="qExpress_pic"><a href="https://www.xueyinonline.com/detail/228837355"><img
+								<div class="qExpress_pic"><a href="#"><img
 											src=""></a>
 									<span></span>
 								</div>
 								<dl class="qExpress_dl">
-									<dt><a href="https://www.xueyinonline.com/detail/228837355">国际货运代理</a></dt>
-									<dd>乌鲁木齐职业大学 | 司光南</dd>
+									<dt><a href="#">xxx</a></dt>
+									<dd>xxx</dd>
 								</dl>
 							</div>
 						</li>
 						<li>
 							<div class="qExpress_padd qNima">
-								<div class="qExpress_pic"><a href="https://www.xueyinonline.com/detail/227538725"><img
+								<div class="qExpress_pic"><a href="#"><img
 											src=""></a>
 									<span></span>
 								</div>
 								<dl class="qExpress_dl">
-									<dt><a href="https://www.xueyinonline.com/detail/227538725">发现美 创造美——设计基础1</a></dt>
-									<dd>湖北经济学院法商学院 | 汪鸿</dd>
+									<dt><a href="#">xxx</a></dt>
+									<dd>xxx</dd>
 								</dl>
 							</div>
 						</li>
 						<li>
 							<div class="qExpress_padd qNima">
-								<div class="qExpress_pic"><a href="https://www.xueyinonline.com/detail/207150587"><img
+								<div class="qExpress_pic"><a href="#"><img
 											src=""></a>
 									<span></span>
 								</div>
 								<dl class="qExpress_dl">
-									<dt><a href="https://www.xueyinonline.com/detail/207150587">水利工程管理</a></dt>
-									<dd>杨凌职业技术学院 | 宋冰</dd>
+									<dt><a href="#">xxx</a></dt>
+									<dd>xxx</dd>
 								</dl>
 							</div>
 						</li>
 						<li>
 							<div class="qExpress_padd qNima">
-								<div class="qExpress_pic"><a href="https://www.xueyinonline.com/detail/227287977"><img
+								<div class="qExpress_pic"><a href="#"><img
 											src=""></a>
 									<span></span>
 								</div>
 								<dl class="qExpress_dl">
-									<dt><a href="https://www.xueyinonline.com/detail/227287977">机电一体化技术与实训</a></dt>
-									<dd>山东工业职业学院 | 赵云伟</dd>
+									<dt><a href="#">xxx</a></dt>
+									<dd>xxx</dd>
 								</dl>
 							</div>
 						</li>
@@ -208,12 +208,12 @@
 					<!-- 学习人数最多推荐 -->
 					<li v-for="(value,index) in successMes.data.LearnSortCourse" :key="index">
 						<div class="qExpress_padd qNima">
-							<div class="qExpress_pic"><a href="https://www.xueyinonline.com/detail/227089381"><img
+							<div class="qExpress_pic"><a :href="'/#/coursePage/'+value.courseNumber" target="_brank"><img
 									:src="'/images/'+value.imagePath"></a>
 								<span></span>
 							</div>
 							<dl class="qExpress_dl">
-								<dt><a href="https://www.xueyinonline.com/detail/227089381">{{value.courseName}}</a></dt>
+								<dt><a :href="'/#/coursePage/'+value.courseNumber" target="_brank">{{value.courseName}}</a></dt>
 								<dd>{{value.teacherSchool}} | {{value.teacherName}}</dd>
 							</dl>
 							<div class="qExpress_state">
@@ -225,12 +225,12 @@
 					<!-- 评论人数最多推荐 -->
 					<li v-for="(value,index) in successMes.data.CommentSortCourse" :key="index">
 						<div class="qExpress_padd qNima">
-							<div class="qExpress_pic"><a href="https://www.xueyinonline.com/detail/227089381"><img
+							<div class="qExpress_pic"><a :href="'/#/coursePage/'+value.courseNumber" target="_brank"><img
 									:src="'/images/'+value.imagePath"></a>
 								<span></span>
 							</div>
 							<dl class="qExpress_dl">
-								<dt><a href="https://www.xueyinonline.com/detail/227089381">{{value.courseName}}</a></dt>
+								<dt><a :href="'/#/coursePage/'+value.courseNumber" target="_brank">{{value.courseName}}</a></dt>
 								<dd>{{value.teacherSchool}} | {{value.teacherName}}</dd>
 							</dl>
 							<div class="qExpress_state">
@@ -369,7 +369,7 @@
 						</div>
 					</li> -->
 				</ul>
-				<ul class="clearAfter" style="display: none;">
+				<!-- <ul class="clearAfter" style="display: none;">
 					<li>
 						<div class="qExpress_padd qNima">
 							<div class="qExpress_pic"><a href="https://www.xueyinonline.com/detail/227346181"><img
@@ -888,7 +888,7 @@
 							</div>
 						</div>
 					</li>
-				</ul>
+				</ul> -->
 			</div>
 		</div>
 	</div>

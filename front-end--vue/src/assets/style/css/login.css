@@ -171,6 +171,21 @@ body {
     cursor: pointer;
     border: none;
 }
+/* .lg-container .btn-big-blue:hover {
+    background-position:0 -96px;
+    background-size: cover;
+} */
+
+/* .lg-container .btn-big-blue:active {
+     background-position:0 -96px;
+    background-size: cover;
+} */
+
+/* .lg-container .btn-big-blue.disable {
+    background: url("../image/bg-btn-disable.png") no-repeat center;
+    background-size: cover;
+} */
+
 
 .pd-lr-24 {
     padding: 0 24px;

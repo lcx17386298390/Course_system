@@ -20,13 +20,13 @@ const index = {
 		return data
 	},
 	// 首页的样式逻辑
-	indexImage: function () {
-		let slides = document.getElementById("slides").getElementsByTagName("li")
-		for (let i = 0; i < 6; i++) {
-			// slides[i].style.backgroundImage = 'url('+this.successMes[i].ImageName+')'
-			console.log(this.successMes)
-		}
-	},
+	// indexImage: function () {
+	// 	let slides = document.getElementById("slides").getElementsByTagName("li")
+	// 	for (let i = 0; i < 6; i++) {
+	// 		// slides[i].style.backgroundImage = 'url('+this.successMes[i].ImageName+')'
+	// 		console.log(this.successMes)
+	// 	}
+	// },
 	indexStyle: function () {
 		let currentIndex = 0
 		let slides = document.getElementById("slides").getElementsByTagName("li")

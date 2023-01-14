@@ -1,6 +1,13 @@
 import axios from "axios";
 
 const courseListJs = {
+    // 页数跳转
+    coursePageJump: function(){
+        let xljumpButton = document.getElementsByClassName('xl-jumpButton')[0]
+        xljumpButton.addEventListener("click",jumpButtonClick)
+        function jumpButtonClick(){
+        }
+    },
     courselistAccess: async function () {
         let data
         await axios.get("/courselist")
@@ -14,6 +21,7 @@ const courseListJs = {
             .catch(error=>{
                 alert(error)
             })
+        
         return data
     }
 }

@@ -53,15 +53,13 @@
                                     <!--按钮不可点击 加上class：disable -->
                                     <div class="btns-box">
                                         <p class="err-tip" id="err-txt"></p>
-                                        <!-- <button class="btn-big-blue margin-btm24"
-                                            :click="loginByPhoneAndPwd">登录</button> -->
                                         <input type="button" class="btn-big-blue margin-btm24"
                                         @click="loginByPhoneAndPwd()" value="登录">
                                     </div>
                                 </form>
                                 <div class="clearaft fs14 pd-lr-24">
-                                    <a href="javaScript:void(0)" onclick="toRegister()" class="col-blue fl">新用户注册</a>
-                                    <a href="javaScript:void(0)" onclick="otherLogin(2)" class="col-blue fr">手机验证码登录</a>
+                                    <a href="/#/register" onclick="toRegister()" class="col-blue fr">新用户注册</a>
+                                    <!-- <a href="javaScript:void(0)" onclick="otherLogin(2)" class="col-blue fr">手机验证码登录</a> -->
                                 </div>
                             </div>
                         </div>
@@ -107,26 +105,6 @@ export default {
             params.append('userName',this.username)
             params.append('userPaw',this.userpaw)
             await loginJs.loginByPhoneAndPwd(params)
-            setTimeout(()=>{
-                this.$router.push("/")
-            },500)
-        //     let params = new URLSearchParams()
-        //     params.append('userName',this.username)
-        //     params.append('userPaw',this.userpaw)
-        //     // loginJs.loginByPhoneAndPwd(params)
-        //     let data
-        //     axios.post("/login",params)
-        //     .then(res=>{
-        //         if(res.status == 200){
-        //             data = res
-        //         }else{
-        //             console.log("登录数据访问错误")
-        //         }
-        //     })
-        //     .catch(error=>{
-        //         alert(error)
-        //     })
-        // return data
         }
     },
     mounted(){

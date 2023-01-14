@@ -405,13 +405,13 @@
                 <li v-for="(value,index) in pageCourseList" :key="index">
                     <div class="qExpress_padd qNima">
                         <div class="qExpress_pic">
-                            <a href="https://www.xueyinonline.com/detail/227386361" target="_blank">
+                            <a :href="'/#/coursePage/'+value.courseNumber" target="_blank">
                                 <img :src="'/images/'+value.imagePath">
                             </a>
                             <span></span>
                         </div>
                         <dl class="qExpress_dl">
-                            <dt><a href="https://www.xueyinonline.com/detail/227386361" target="_blank">{{value.courseName}}</a></dt>
+                            <dt><a :href="'/#/coursePage/'+value.courseNumber" target="_blank">{{value.courseName}}</a></dt>
                             <dd>{{value.teacherSchool}} | {{value.teacherName}}</dd>
                         </dl>
                         <div class="qExpress_state">
@@ -422,13 +422,13 @@
                 </li>
             </ul>
             <div id="page">
-                <ul>
-                    <li class="xl-prevPage xl-disabled">上一页</li>
+                <ul name="jumpBtnDiv">
+                    <!-- <li class="xl-prevPage xl-disabled">上一页</li>
                     <li class="xl-active">1</li>
-                    <li>2</li>
+                    <li onclick="">2</li>
                     <li class="xl-nextPage">下一页</li>
                     <li class="xl-jumpText xl-disabled">跳转到<input type="number" id="xlJumpNum">页</li>
-                    <li class="xl-jumpButton">确定</li>
+                    <li class="xl-jumpButton">确定</li> -->
                 </ul>
             </div>
 
@@ -449,27 +449,101 @@ export default {
                     allCourseList:[],
                 }
             },
-            pageCourseList:[]
+            pageCourseList:[],
+            pageCouseBeginNum:0,
+            pageNum:1
         }
     },
     methods:{
         upMes: function(callback){
             courselistJs.courselistAccess().then(res=>{
+                // 总课程数据
                 this.successMes = res
-                this.successMes.data.allCourseList = res.data.allCourseList
-                this.pageCourseList = this.successMes.data.allCourseList.slice(0,20)
+                this.pageCourseList = this.successMes.data.allCourseList.slice(this.pageCouseBeginNum,this.pageCouseBeginNum+20)
                 callback(res)
+                let num = this.successMes.data.allCourseList.length
+                this.initialPageBtn(num)
             })
+        },
+        upMesStart: function(){
+            let _this = this
+            this.upMes(arr=>{
+                _this.$nextTick(()=>{
+                    console.log(arr)
+                })
+            })
+        },
+        // 重新设置起始课程
+        resetBeginNum: function(beginNum){  //传进来页面值
+            // 设置上一页和下一页的样式
+            if(beginNum==1){
+                let prePageBtn = document.getElementsByClassName("xl-prevPage")[0]
+                prePageBtn.className = 'xl-prevPage xl-disabled'
+            }else{
+                let prePageBtn = document.getElementsByClassName("xl-prevPage")[0]
+                prePageBtn.className = 'xl-prevPage'
+            }
+            if(beginNum==Math.ceil(this.successMes.data.allCourseList.length/20)){
+                let nextPageBtn = document.getElementsByClassName("xl-nextPage")[0]
+                nextPageBtn.className = 'xl-nextPage xl-disabled'
+            }else{
+                let nextPageBtn = document.getElementsByClassName("xl-nextPage")[0]
+                nextPageBtn.className = 'xl-nextPage'
+            }
+            let pageBtn = document.getElementsByName('pageBtn')
+            pageBtn[this.pageNum-1].className = ''
+            this.pageNum = beginNum
+            pageBtn[beginNum-1].className = 'xl-active'
+            beginNum=(beginNum-1)*20
+            this.pageCouseBeginNum = beginNum
+            this.pageCourseList = this.successMes.data.allCourseList.slice(this.pageCouseBeginNum,this.pageCouseBeginNum+20)
+        },
+        // 跳转按钮的初始化
+        initialPageBtn: function(num){
+            let btnDivHTML = ""
+            btnDivHTML+="<li class='xl-prevPage  xl-disabled' onclick='prePage()'>上一页</li>"
+            let jumpBtnDiv = document.getElementsByName("jumpBtnDiv")[0]
+            for(let i = 1;i<=Math.ceil(num/20);i++){
+                btnDivHTML+="<li onclick='resetBeginNum("+i+")' name='pageBtn'>"+i+"</li>"
+            }
+            btnDivHTML+="<li class='xl-nextPage' onclick='nextPage()'>下一页</li><li class='xl-jumpText xl-disabled'>跳转到<input type='number' id='xlJumpNum'>页</li><li class='xl-jumpButton' onclick='jumpPage()'>确定</li>"
+            jumpBtnDiv.innerHTML = btnDivHTML
+            document.getElementsByName("pageBtn")[0].className = "xl-active"
+        },
+        prePage: function(){
+            if(this.pageNum==1){
+                return
+            }
+            // this.pageNum-=1
+            this.resetBeginNum(this.pageNum-1)
+        },
+        nextPage: function(){
+            if(this.pageNum>=Math.ceil(this.successMes.data.allCourseList.length/20)){
+                return
+            }
+            // this.pageNum+=1
+            this.resetBeginNum(this.pageNum+1)
+        },
+        jumpPage: function(){
+            let num = document.getElementById('xlJumpNum').value
+            if(num<1||num>Math.ceil(this.successMes.data.allCourseList.length/20)){
+                alert("页数错误")
+            }else{
+                this.resetBeginNum(num)
+            }
         }
     },
+    created(){
+        window.pageNum = this.pageNum
+        window.upMesStart = this.upMesStart
+        window.resetBeginNum = this.resetBeginNum
+        window.prePage = this.prePage
+        window.nextPage = this.nextPage
+        window.jumpPage = this.jumpPage
+    },
     mounted(){
-        let _this = this
-        this.upMes(arr=>{
-            _this.$nextTick(()=>{
-                console.log(arr)
-            })
-            
-        })
+        this.upMesStart()
+        courselistJs.coursePageJump()
     }
 }
 </script>

@@ -20,8 +20,8 @@
             <router-link class="regist" to="/register">注册</router-link>
           </div>
           <div class="qLogin_after" style="display:none">
-            <router-link to="/mine" id="tospace">
-              <img src="/images/145cbe371dd737e1376b08e2b2eca411.png">
+            <router-link to="/mine/myMes" id="tospace">
+              <img :src="loginSuccessMes.data.headImage">
             </router-link>
             <a href="#" id="logout" target="_top" @click="loginOut">退出</a>
           </div>
@@ -46,7 +46,9 @@ export default {
       loginSuccessMes: {
         data: {
           state: '',
-          loginUser: ''
+          loginUser: '',
+          headImage: '',
+          userType: ''
         }
       }
     }

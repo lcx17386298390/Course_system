@@ -1,8 +1,7 @@
 package com.evan.demo.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.evan.demo.pojo.Course;
-import com.evan.demo.pojo.SlideImage;
+import com.evan.demo.pojo.*;
 import com.evan.demo.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,23 @@ public class LoginController {
     CoummentSortCourseService coummentSortCourseService;
 
     @Autowired
-    UpUserMesService teacherMesService;
+    UserMesService userMesService;
+
+    @Autowired
+    SendCodeService sendCodeService;
+
+    @Autowired
+    CourseService courseService;
+
+    @Autowired
+    CommentsService commentsService;
+
+    @Autowired
+    ChapterService chapterService;
+
+    Map<String,Object>codeMap = new HashMap<String,Object>(){{
+        put("code","404");
+    }};
 
     @ResponseBody
     @GetMapping("/")
@@ -53,12 +68,12 @@ public class LoginController {
 
 
         Integer id = 0;
-        slideImageList.add(new SlideImage("https://s1.imagehub.cc/images/2022/11/01/4496d3ff64ab8251fdc3ecc65228f298.jpg", id++));
-        slideImageList.add(new SlideImage("https://s1.imagehub.cc/images/2022/11/01/790b6e214da38a35532dddbc5b9a9ba9.png", id++));
-        slideImageList.add(new SlideImage("https://s1.imagehub.cc/images/2022/11/01/6f0203d00029bb436ec2e19dc6319c15.png", id++));
-        slideImageList.add(new SlideImage("https://s1.imagehub.cc/images/2022/11/01/518cc9b94f05ec96302c6f4efe704bf1.jpg", id++));
-        slideImageList.add(new SlideImage("https://s1.imagehub.cc/images/2022/11/01/95dbb6a6c55b215026c1a8c2b3482820.jpg", id++));
-        slideImageList.add(new SlideImage("https://s1.imagehub.cc/images/2022/11/01/79782df46a0354c3e4e48f2d2707d7d1.jpg", id++));
+        slideImageList.add(new SlideImage("https://i.postimg.cc/4yVCpb7k/4496d3ff64ab8251fdc3ecc65228f298.jpg", id++));
+        slideImageList.add(new SlideImage("https://i.postimg.cc/85FgzVTC/790b6e214da38a35532dddbc5b9a9ba9.png", id++));
+        slideImageList.add(new SlideImage("https://i.postimg.cc/7DrTFgkP/6f0203d00029bb436ec2e19dc6319c15.png", id++));
+        slideImageList.add(new SlideImage("https://i.postimg.cc/Ssw-FXtKf/518cc9b94f05ec96302c6f4efe704bf1.jpg", id++));
+        slideImageList.add(new SlideImage("https://i.postimg.cc/yNpzKN45/95dbb6a6c55b215026c1a8c2b3482820.jpg", id++));
+        slideImageList.add(new SlideImage("https://i.postimg.cc/9X7j3Vx8/79782df46a0354c3e4e48f2d2707d7d1.jpg", id++));
         map.put("loginState", loginStateMap);
         map.put("LearnSortCourse", learnSortCourseService.getLearnSortCourse().subList(0,4));
         map.put("CommentSortCourse", coummentSortCourseService.getCommentSortCourse().subList(0,4));
@@ -77,19 +92,18 @@ public class LoginController {
         return stateMap;
     }
 
-    /* 登录api（测试中） */
+    /* 登录api */
     @ResponseBody
     @PostMapping("/login")
     public String login(@RequestParam("userName") String userName, @RequestParam("userPaw") String userPaw, HttpServletResponse response) {
         Cookie cookie1 = new Cookie("userName", userName);
         Cookie cookie2 = new Cookie("userPaw", userPaw);
-
-        /*不设置cookie时间限制*/   
-//        cookie1.setMaxAge(30);
-//        cookie2.setMaxAge(30);
-        response.addCookie(cookie1);
-        response.addCookie(cookie2);
-        return cookie1.getValue() + "+" + cookie2.getValue();
+        if(userMesService.getUserByEmail(userName)!=null){
+            response.addCookie(cookie1);
+            response.addCookie(cookie2);
+            return "200";
+        };
+        return "查无此人";
     }
 
     @ResponseBody
@@ -135,19 +149,21 @@ public class LoginController {
     }
 
 
+    /*用户的注册*/
     @ResponseBody
-    @PostMapping("/upTeacherMes")
-    public String upTeacherMes(@RequestParam("userPaw") String userPaw,
+    @PostMapping("/upUserMes")
+    public String upUserMes(@RequestParam("userPaw") String userPaw,
                                @RequestParam("name") String name,
                                @RequestParam("school") String school,
                                @RequestParam("position") String position  ,
                                @RequestParam("introduction") String introduction,
                                @RequestParam("userImage") MultipartFile userImage,
                                @RequestParam("type") int type,
-                               @RequestParam("phone") String phone){
-        return teacherMesService.addTeacherMes(userPaw,name,school,position,introduction,userImage,type,phone);
+                               @RequestParam("email") String email){
+        return userMesService.addUserMes(userPaw,name,school,position,introduction,userImage,type,email);
     }
 
+    /*获取所有课程*/
     @ResponseBody
     @GetMapping("/courselist")
     public Map getAllSource(){
@@ -157,4 +173,108 @@ public class LoginController {
         return allCourceMap;
     }
 
+    /*发送验证码*/
+    @ResponseBody
+    @GetMapping("/sendCode/{emailNumber}")
+    public String sendCode(@PathVariable String emailNumber){
+        Map<String,Object> reCodeMap = sendCodeService.sendCode(emailNumber);
+//        codeMap.put("status",reCodeMap.get("status"));
+//        codeMap.put("successMes",reCodeMap.get("successMes"));
+//        codeMap.put("code",reCodeMap.get("code"));
+        codeMap = reCodeMap;
+        return codeMap.get("successMes").toString();
+    }
+
+    /*邮箱验证码*/
+    @ResponseBody
+    @GetMapping("/codeValidation")
+    public String codeValidation(@RequestParam("code") String code){
+        System.out.println(codeMap.get("code"));
+        System.out.println(code);
+        if(code.equals(codeMap.get("code").toString())){
+            return "200";
+        }else {
+            return "404";
+        }
+    }
+
+    /*获取我的信息（我的模块查看使用）*/
+    @ResponseBody
+    @GetMapping("/getMyMes")
+    public User getMyMes(HttpServletRequest request){
+        Map<String,String>map = new HashMap<>();
+        Cookie[] cookies = request.getCookies();
+        for(Cookie cookie : cookies){
+            if(cookie.getName().equals("userName")&&cookie.getValue()!=null&&!cookie.getValue().equals("")){
+                User user = userMesService.getUserByEmail(cookie.getValue());
+                return user;
+            }
+        }
+        return null;
+    }
+
+    /*教师获取“我创建的课程”信息api*/
+    @ResponseBody
+    @GetMapping("/getCourseByTeacherNumber/{teacherAccountNumber}")
+    public Object getCourseByTeacherNumber(@PathVariable String teacherAccountNumber){
+        return courseService.getCourseByTeacherNumber(teacherAccountNumber);
+    }
+
+    /*课程页面初始化配置api*/
+    @ResponseBody
+    @GetMapping("/coursePage/{courseNumber}")
+    public Object getCoursePage(@PathVariable String courseNumber){
+        return courseService.getCourseByCourseNumber(courseNumber);
+    }
+
+    /*得到评论*/
+    @ResponseBody
+    @GetMapping("/getComments/{courseNumber}")
+    public Object getComments(@PathVariable String courseNumber){
+        List<Map>comments = new ArrayList<>();
+        List<Comment>mainComments = commentsService.getCommentsByIdAndType(courseNumber,0);//type为0是得到主评论
+        for(int i = 0;i< mainComments.size();i++){
+            List<Comment>subComments = commentsService.getCommentsByIdAndOwner_id(courseNumber,mainComments.get(i).getSub_id());
+            Map<String,Object>map = new HashMap<>();
+            map.put("mainComment",mainComments.get(i));
+            map.put("subComment",subComments);
+            comments.add(map);
+        }
+        return comments;
+    }
+
+    /*上传评论内容*/
+    @ResponseBody
+    @PostMapping("/upReplyContent/{courseNumber}")
+    public Object upComment(@PathVariable String courseNumber,
+                            @RequestParam("sub_id") String sub_id,
+                            @RequestParam("type") Integer type,
+                            @RequestParam("replyContent") String replyContent,
+                            @RequestParam("dateTime") String dateTime,
+                            @RequestParam("userAccountNumber") String userAccountNumber){
+        //主评论（对视频提问）
+        if(type==0){
+            List<Comment>mainComments = commentsService.getCommentsByIdAndType(courseNumber,0);//type为0是得到主评论
+            int num = mainComments.size();  //主评论数量，便以计算子评论id
+            commentsService.addComment(courseNumber,num+"1",0,null,userAccountNumber,0,replyContent,dateTime);
+        }else if(type==1){  //对评论进行回复
+            commentsService.addComment(courseNumber,null,1,sub_id,userAccountNumber,0,replyContent,dateTime);
+        }
+        return "success";
+    }
+
+    @ResponseBody
+    @GetMapping("/getChapters/{courseNumber}")
+    public Object getChapter(@PathVariable String courseNumber){
+        List<Map> chapters = new ArrayList<>();
+        List<Chapter>mainChapter = chapterService.getChapterByCourseNumberAndType(courseNumber,0);//type为0是得到主章节
+        for(int i = 0;i< mainChapter.size();i++){
+            List<Chapter>subChapters = chapterService.getChapterByCourseNumberAndOwnerId(courseNumber,mainChapter.get(i).getNum());
+            Map<String,Object>map = new HashMap<>();
+            map.put("mainChapter",mainChapter.get(i));
+            map.put("subChapter",subChapters);
+            chapters.add(map);
+        }
+        return chapters;
+    }
 }

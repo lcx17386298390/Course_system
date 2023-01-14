@@ -1,5 +1,8 @@
 package com.evan.demo.service;
 
+import com.evan.demo.mapper.UserMesMapper;
+import com.evan.demo.pojo.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
@@ -10,6 +13,8 @@ import java.util.Map;
 
 @Service
 public class LoginStateService {
+    @Autowired
+    UserMesMapper userMesMapper;
 
     /*登录状态检测方法
      * 此service方法没有与数据库交互，所以没有mappaer层
@@ -24,9 +29,12 @@ public class LoginStateService {
                 /*
                 * 相当做了第二次验证，非空不一定登陆
                 * */
-                if(cookie.getName().equals("userName")&&cookie.getValue()!=null){
+                if(cookie.getName().equals("userName")&&cookie.getValue()!=null&&!cookie.getValue().equals("")){
+                    User user = userMesMapper.getUserByEmail(cookie.getValue());
                     maps.put("state",true);
                     maps.put("loginUser",cookie.getValue());
+                    maps.put("headImage", user.getImagePath());
+                    maps.put("userType", user.getType());
                     return maps;
                 }
             }

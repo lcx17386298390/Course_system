@@ -1,5 +1,14 @@
 package com.evan.demo.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import java.sql.Date;
+import java.sql.Timestamp;
+
+@Data
 public class Course {
     private String courseNumber;
     private String courseName;
@@ -9,86 +18,16 @@ public class Course {
     private int state;
     private int learnNumber;
     private int commentsNumber;
+    private String teacherAccountNumber;
+    private Date startDate;
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")		//转化时间戳
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date endDate;
 
-    public int getCommentsNumber() {
-        return commentsNumber;
-    }
+    private Integer classHours;
+    private String courseIntroduction;
 
-    public void setCommentsNumber(int commentsNumber) {
-        this.commentsNumber = commentsNumber;
-    }
-
-    public String getCourseNumber() {
-        return courseNumber;
-    }
-
-    public void setCourseNumber(String courseNumber) {
-        this.courseNumber = courseNumber;
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-
-    public String getTeacherName() {
-        return teacherName;
-    }
-
-    public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
-    }
-
-    public String getTeacherSchool() {
-        return teacherSchool;
-    }
-
-    public void setTeacherSchool(String teacherSchool) {
-        this.teacherSchool = teacherSchool;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
-    public int getLearnNumber() {
-        return learnNumber;
-    }
-
-    public void setLearnNumber(int learnNumber) {
-        this.learnNumber = learnNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "Course{" +
-                "courseNumber='" + courseNumber + '\'' +
-                ", courseName='" + courseName + '\'' +
-                ", teacherName='" + teacherName + '\'' +
-                ", teacherSchool='" + teacherSchool + '\'' +
-                ", imagePath='" + imagePath + '\'' +
-                ", state=" + state +
-                ", learnNumber=" + learnNumber +
-                ", commentsNumber=" + commentsNumber +
-                '}';
-    }
-
-    public Course(String courseNumber, String courseName, String teacherName, String teacherSchool, String imagePath, int state, int learnNumber, int commentsNumber) {
+    public Course(String courseNumber, String courseName, String teacherName, String teacherSchool, String imagePath, int state, int learnNumber, int commentsNumber, String teacherAccountNumber, Date startDate, Date endDate, Integer classHours, String courseIntroduction) {
         this.courseNumber = courseNumber;
         this.courseName = courseName;
         this.teacherName = teacherName;
@@ -97,5 +36,10 @@ public class Course {
         this.state = state;
         this.learnNumber = learnNumber;
         this.commentsNumber = commentsNumber;
+        this.teacherAccountNumber = teacherAccountNumber;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.classHours = classHours;
+        this.courseIntroduction = courseIntroduction;
     }
 }
