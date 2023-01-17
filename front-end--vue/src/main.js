@@ -4,17 +4,7 @@ import Router from './router/index.js'
 import VueRouter from 'vue-router'
 import axios from 'axios'
 import { ajaxPrefilter } from 'jquery'
-// import { VueI18n } from 'vue-i18n'
-
-// Vue.use(VueI18n)
-
-// const i18n=new VueI18n({
-//   locale:localStorage.getItem('languageSet')||'zh',   //从localStorage里获取用户中英文选择，没有则默认中文
-//   messages:{
-//       'zh':require('./components/language/zh'),
-//       'en':require('./components/language/en')
-//   }
-// })
+import i18n from './i18n/i18n'
 
 // import $ from 'jquery'
 
@@ -36,5 +26,5 @@ new Vue({
   axios,
   render: h => h(App),
   router: Router,
-  // i18n
+  i18n
 }).$mount('#app')

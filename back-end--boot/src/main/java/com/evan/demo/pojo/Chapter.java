@@ -9,6 +9,6 @@ public class Chapter {
     private String chapterType;
     private String title;
     private Integer num;
-    private String website;
+    private String fileName;
     private Integer owner_id;
 }

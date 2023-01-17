@@ -14,6 +14,8 @@ import Learned from "../components/Learned.vue"
 import Create from "../components/Create.vue"
 import myMes from "../components/MyMes.vue"
 import coursePage from "../components/CoursePage.vue"
+import ChapterPage from "../components/ChapterPage.vue"
+import CreateCourse from "../components/CreateCourse.vue"
 
 export default new VueRouter({
     mode: 'hash',
@@ -110,6 +112,20 @@ export default new VueRouter({
                 {
                     path: "/",
                     component: coursePage
+                }
+            ]
+        },
+        {
+            path: '/chapterPage/:courseNumber/:chapterNum',
+            component: ChapterPage
+        },
+        {
+            path: '/CreateCourse',
+            component: Home,
+            children: [
+                {
+                    path: "/",
+                    component: CreateCourse 
                 }
             ]
         }

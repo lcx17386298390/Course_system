@@ -1,0 +1,8 @@
+/*footer*/
+.qFooter{ margin-top:40px; min-width:1280px; width:100%; background:#4f4f4f; line-height:22px; padding:40px 0; font-size:12px; color:#c2c2c2; text-align:center;}
+.qFooter .foot_gywm{ font-size:14px; margin-bottom:20px;}
+.qFooter .foot_gywm a{ color:#FFF;}
+.qFooter .foot_gywm span{ color:#FFF; margin:0 15px;}
+.qFooter .qfoot_logo{ line-height:42px; margin-top:20px;}
+.qFooter .qfoot_logo img{ width:42px; height:42px; margin-right:10px; border-radius:4px; vertical-align:top;}
+.qFooter .qfoot_logo .qfoot_span{ margin:0 20px;}

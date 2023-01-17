@@ -30,9 +30,6 @@ public class LoginController {
     LoginStateService loginStateService;
 
     @Autowired
-    UpCourseService upCourseService;
-
-    @Autowired
     LearnSortCourseService learnSortCourseService;
 
     @Autowired
@@ -114,38 +111,60 @@ public class LoginController {
         return "退出账号";
     }
 
-    @PostMapping("/upload")
     @ResponseBody
-    public String upload(@RequestParam("file") MultipartFile[] files,
+    @PostMapping("/createCourse")
+    public Object upload(@RequestParam("file") MultipartFile file,
                          @RequestParam("courseName") String courseName,
-                         @RequestParam("teacherName") String teacherName,
-                         @RequestParam("teacherSchool") String teacherSchool) {
-        if (files.length == 0) {
-            return "上传失败，请选择文件";
-        }
-
-        /*定义单次最多只能上传100个文件*/
-        String[] fileNames = new String[100];
-        /*定义上传路径*/
-        String filePath = "C:/Users/lcx17/Desktop/upFile/";
-
-        for (int i = 0; i < files.length; i++) {
-            fileNames[i] = files[i].getOriginalFilename();
-            File dest = new File(filePath + fileNames[i]);
-            try {
-                files[i].transferTo(dest);
-                String num = "2654654560";
-                upCourseService.addCourse(num+ i,courseName,teacherName,teacherSchool,fileNames[i],1,i,(int)(Math.random()*1000));
-                if (i == files.length - 1) {
-                    log.info("上传成功");
-                    return "上传成功";
-                }
-            } catch (IOException e) {
-                log.error(e.toString(), e);
-            }
-        }
-
-        return "上传失败！";
+                         @RequestParam("courseIntroduction") String courseIntroduction,
+                         @RequestParam("classHours") String classHours,
+                         @RequestParam("endDate") String endDate,
+                         @RequestParam("teacherAccountNumber") String teacherAccountNumber) {
+//        if (files.length == 0) {
+//            return "上传失败，请选择文件";
+//        }
+//
+//        /*定义单次最多只能上传100个文件*/
+//        String[] fileNames = new String[100];
+//        /*定义上传路径*/
+//        String filePath = "C:/Users/lcx17/Desktop/upFile/";
+//
+//        for (int i = 0; i < files.length; i++) {
+//            fileNames[i] = files[i].getOriginalFilename();
+//            File dest = new File(filePath + fileNames[i]);
+//            try {
+//                files[i].transferTo(dest);
+//                String num = "2654654560";
+//                upCourseService.addCourse(num+ i,courseName,teacherName,teacherSchool,fileNames[i],1,i,(int)(Math.random()*1000));
+//                if (i == files.length - 1) {
+//                    log.info("上传成功");
+//                    return "上传成功";
+//                }
+//            } catch (IOException e) {
+//                log.error(e.toString(), e);
+//            }
+//        }
+        System.out.println(courseName+"+"+file.getOriginalFilename()+"+"+courseIntroduction+"+"+classHours+"+"+endDate);
+        return null;
+//        if (file==null|| file.isEmpty()){
+//            return "上传失败，请选择文件";
+//        }
+//        String fileName;
+//        /*定义上传路径*/
+//        String filePath = "C:/Users/lcx17/Desktop/upFile/";
+//        fileName = file.getOriginalFilename();
+//        File dest = new File(filePath + fileName);
+//        try {
+//                file.transferTo(dest);
+//                List<Course> courseList = coummentSortCourseService.getCommentSortCourse();
+//                int courseNum = courseList.size()+1;
+//                String num = Integer.toString(1000000000+courseNum);
+////                courseService.addCourse(num,courseName,teacherName,teacherSchool,fileName,1,0,0);
+//            } catch (IOException e) {
+//                log.error(e.toString(), e);
+//                return "上传失败";
+//            }
+//
+//        return "上传成功！";
     }
 
 
@@ -276,5 +295,14 @@ public class LoginController {
             chapters.add(map);
         }
         return chapters;
+    }
+
+    /*获取课程的章节文件api*/
+    @ResponseBody
+    @GetMapping("/chapterPage/{courseNumber}/{chapterNum}")
+    public Object getChapterPage(@PathVariable String courseNumber,@PathVariable String chapterNum){
+        /*0下标位owner_id（即父章节）,1为num（本身章节，子章节）*/
+        String[] nums = chapterNum.split("\\.");
+        return chapterService.getChapterByCourseNumberAndOwnerIdAndNum(courseNumber,Integer.parseInt(nums[0]),Integer.parseInt(nums[1]));
     }
 }

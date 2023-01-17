@@ -6,7 +6,7 @@
 				<ul id="slides">
 					<!-- A计划 -->
 					<li v-for="(value) in successMes.data.slideImageList" :key="value.id" :style="{background: 'url('+value.ImageName+')'}" style="background: center top no-repeat; z-index: 9; transition:all 2s; visibility: visible; background-size: auto 100%; opacity:1;">
-						<a href="#" target="_blank"></a>>
+						<a href="#" target="_blank"></a>
 					</li>
 
 					<!-- B计划 -->
@@ -32,7 +32,7 @@
 		<!-- 课程分类表 -->
 		<div class="qFicat">
 			<div class="qWrap clearfix">
-				<ul class="qFicat_ul01 clearfix fl">
+				<!-- <ul class="qFicat_ul01 clearfix fl">
 					<li value="1"><a class="title" href="javascript:void(0);">本科</a></li>
 					<li value="6863" data-value="C1"><a href="javascript:void(0);">理学</a></li>
 					<li value="6913" data-value="C1"><a href="javascript:void(0);">工学</a></li>
@@ -68,7 +68,7 @@
 					<li><a href="https://www.xueyinonline.com/portal/project">微专业</a></li>
 					<li><a href="https://www.xueyinonline.com/portal/project">微学位</a></li>
 					<li><a href="https://www.xueyinonline.com/mooc/courselist">更多</a></li>
-				</ul>
+				</ul> -->
 			</div>
 		</div>
 

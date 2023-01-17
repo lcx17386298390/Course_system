@@ -2,12 +2,12 @@
         <div class="lg-container" id="registerVm">
             <div class="main main-def-w lg-register">
                 <div class="lg-top fs14">
-                    <a id="back" href="javascript:void(0)" onclick="window.history.go(-1);" class="back icon-back col-lightblue">返回</a>
+                    <a id="back" href="javascript:void(0)" onclick="window.history.go(-1);" class="back icon-back col-lightblue">{{$t('user.back')}}</a>
                 </div>
                 <form method="post" action="/upTeacherMes" enctype="multipart/form-data" id="mesForm">
                     <!--第一步-->
                     <div class="mesDiv1">
-                        <h3 class="lg-title">新用户注册</h3>
+                        <h3 class="lg-title">{{$t('user.registerPromat')}}</h3>
                         <div class="lg-item icon-school margin-btm24 item-select" id="pidDiv" style="display:none">
                             <input type="text" class="w-ipt-100 to-select-list" id="filter2" placeholder="选择单位" autocomplete="off" onfocus="getFormsByPid(2)" oninput="javascript:getFormsByPid(2)">
                             <div class="filter-list">
@@ -20,7 +20,7 @@
                         <div class="item-tel clearaft item-select">
                             <span class="tel-area fl icon-down to-select-list" @click="registerJS.showTelList()" style="display:none" id="countryShow">+86</span>
                             <input type="hidden" value="86" id="countryCode" class="voiceUsedCountryCode">
-                            <input type="tel" class="ipt-focus voiceUsedPhone" name="email" placeholder="电子邮箱" id="email" maxlength="20">
+                            <input type="tel" class="ipt-focus voiceUsedPhone" name="email" :placeholder="this.$t('user.email')" id="email" maxlength="20">
                             <p class="err-txt" id="phoneMsg"></p>
                             <div class="filter-list" style="display:none">
                                 <div class="li-search">
@@ -518,40 +518,40 @@
 
                         <!--验证码-->
                         <div class="lg-item icon-verify margin-btm24 item-getcode" style="margin-bottom: 30px">
-                            <input type="text" class="ipt-code" placeholder="验证码" id="messageCode" maxlength="6">
+                            <input type="text" class="ipt-code" :placeholder="this.$t('user.verificationCode')" id="messageCode" maxlength="6">
                             <input type="hidden" name="validate" id="validate">
-                            <a href="javascript:;" @click="registerJS.sendCode()" class="get-code col-blue pos-r24" id="sendCodeBtn">获取验证码</a>
-                            <a href="javascript:;" class="col-gray pos-r24 before-reget" id="showcountdown"> 60s后重新获取</a>
+                            <a href="javascript:;" @click="registerJS.sendCode(that)" class="get-code col-blue pos-r24" id="sendCodeBtn">{{ $t('user.getVerificationCode') }}</a>
+                            <a href="javascript:;" class="col-gray pos-r24 before-reget" id="showcountdown">60{{ $t('user.secondPromat') }}</a>
                             <p class="err-tip2 voice-use" id="codeMsg"></p>
                         </div>
                         <!--密码-->
                         <div class="lg-item icon-pwd">
-                            <input type="password" class="pd-right60" name="userPaw" placeholder="设置密码" id="pwd" maxlength="20">
-                            <i class="pos-r24 icon-eye-close fr" onclick="initPassword(this)"></i>
-                            <p class="pwd-rule">密码要求8-16位，至少包含数字，字母，字符两种元素</p>
+                            <input type="password" class="pd-right60" name="userPaw" :placeholder="this.$t('user.setPas')" id="pwd" maxlength="20">
+                            <!-- <i class="pos-r24 icon-eye-close fr" onclick="initPassword(this)"></i> -->
+                            <p class="pwd-rule">{{ $t('user.pasPromat') }}</p>
                             <p class="err-txt" id="pwdMsg"></p>
                         </div>
                     </div>
                     <div class="mesDiv2" style="display:none">
-                        <h2>用户基本信息</h2>
+                        <h2>{{ $t('user.basicUserInformation') }}</h2>
                         <div class="mesDiv">
-                                图片：<input type="file" name="userImage" id="imgFile"><br>
+                                {{ $t('user.picture') }}：<input type="file" name="userImage" id="imgFile"><br>
                         </div>
-                        <div class="mesDiv">姓名：<input type="text" name="name" class="ipt-text" placeholder="姓名"><br></div>
-                        <div class="mesDiv">学校：<input type="text" name="school" class="ipt-text" placeholder="学校"><br></div>
+                        <div class="mesDiv">{{ $t('user.name') }}：<input type="text" name="name" class="ipt-text" :placeholder="this.$t('user.name')"><br></div>
+                        <div class="mesDiv">{{ $t('user.school') }}：<input type="text" name="school" class="ipt-text" :placeholder="this.$t('user.name')"><br></div>
                         
                         <div class="mesDiv typeDiv">
-                                类型： <select name="type" id="type" class="typeChoose">
-                                        <option value=0>学生</option>
-                                        <option value=1>老师</option>
+                                {{ $t('user.type') }}： <select name="type" id="type" class="typeChoose">
+                                        <option value=0>{{ $t('user.student') }}</option>
+                                        <option value=1>{{ $t('user.teacher') }}</option>
                                 </select><br>
                         </div>
                         <div id="positionDiv" style="display:none" class="mesDiv">
-                                职务：<input type="text" name="position" class="ipt-text"><br>
+                                {{ $t('user.position') }}：<input type="text" name="position" class="ipt-text"><br>
                         </div>
                         <div id="introductionDiv" style="display:none" class="mesDiv">
                                 <!-- 简介：<input type="" name="introduction"><br> -->
-                                简介：<textarea name="introduction" cols="50" rows="10" placeholder="  个人简介" class="introductionView"></textarea><br>
+                                {{ $t('user.introduction') }}：<textarea name="introduction" cols="50" rows="10" :placeholder="  this.$t('user.personalProfile')" class="introductionView"></textarea><br>
                         </div>
                     </div>
                     <!-- <input type="hidden" id="pid" name="pid" value="0">
@@ -565,11 +565,11 @@
                         <div class="btns-box">
                                 <p class="err-tip" id="err-txt"></p>
                                 <button type="button" class="btn-big-blue" style="margin-top:0"
-                                        @click="registerJS.register($event.target)">下一步</button>
-                                <input type="button" id="mesSub" class="btn-big-blue" style="margin-top:0;display:none" @click="registerJS.submitBtn()" value="提交">
+                                        @click="registerJS.register($event.target)">{{ $t('user.next') }}</button>
+                                <input type="button" id="mesSub" class="btn-big-blue" style="margin-top:0;display:none" @click="registerJS.submitBtn()" :value="this.$t('user.submit')">
                         </div>
                 </form>
-                <p class="Agreement">登录即表示同意平台<a href="https://homewh.chaoxing.com/agree/privacyPolicy?appId=900001" target="_blank">《隐私政策》</a>
+                <p class="Agreement">{{ $t('user.loginPagePrompt') }}<a href="https://homewh.chaoxing.com/agree/privacyPolicy?appId=900001" target="_blank">《隐私政策》</a>
                     和<a href="https://homewh.chaoxing.com/agree/userAgreement?appId=900001" target="_blank">《用户协议》</a></p>
             </div>
 </div>
@@ -585,7 +585,8 @@ export default {
         data() {
                 return {
                         findCountryCode: '',
-                        registerJS: registerJS
+                        registerJS: registerJS,
+                        that: this
                 }
         },
         methods: {

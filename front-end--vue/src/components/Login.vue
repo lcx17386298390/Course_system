@@ -11,7 +11,7 @@
                     <div class="left login-tab-box" style="position:relative;">
                         <!--<h3 class="lg-title">登录</h3>-->
                         <div class="tab-head">
-                            <a href="javascript:void(0);" class="tab-t current" index="1">手机号/用户名登录</a>
+                            <a href="javascript:void(0);" class="tab-t current" index="1">{{ $t('user.loginMes') }}</a>
                             <!-- <a href="javascript:void(0);" class="tab-t" index="2">  机构账号登录</a> -->
                         </div>
                         <input type="hidden" id="needVcode" name="needVcode" value="">
@@ -37,33 +37,33 @@
                                 <form>
                                     <!--电话号码-->
                                     <div class="lg-item icon-tel margin-btm24">
-                                        <input type="text" class="ipt-tel" placeholder="手机号" id="phone" maxlength="50"
+                                        <input type="text" class="ipt-tel" :placeholder="this.$t('user.email')" id="phone" maxlength="50"
                                             name="userName" v-model="username">
                                         <p class="err-txt" id="phoneMsg"></p>
                                     </div>
                                     <!--密码-->
                                     <div class="lg-item item-pwd icon-pwd">
-                                        <input type="password" class="ipt-pwd" placeholder="密码" id="pwd" maxlength="20"
+                                        <input type="password" class="ipt-pwd" :placeholder="this.$t('user.password')" id="pwd" maxlength="20"
                                             name="userPaw" v-model="userpaw">
-                                        <i class="icon-eye icon-eye-close" onclick="initPassword(this)"></i>
+                                        <!-- <i class="icon-eye icon-eye-close" onclick="initPassword(this)"></i> -->
                                         <a href="javaScript:void(0)" onclick="toFindPwd()"
-                                            class="col-lightblue pos-r24">忘记密码？</a>
+                                            class="col-lightblue pos-r24">{{ $t('user.forgetPas') }}</a>
                                         <p class="err-txt" id="pwdMsg"></p>
                                     </div>
                                     <!--按钮不可点击 加上class：disable -->
                                     <div class="btns-box">
                                         <p class="err-tip" id="err-txt"></p>
                                         <input type="button" class="btn-big-blue margin-btm24"
-                                        @click="loginByPhoneAndPwd()" value="登录">
+                                        @click="loginByPhoneAndPwd()" :value="this.$t('user.login')">
                                     </div>
                                 </form>
                                 <div class="clearaft fs14 pd-lr-24">
-                                    <a href="/#/register" onclick="toRegister()" class="col-blue fr">新用户注册</a>
+                                    <a href="/#/register" onclick="toRegister()" class="col-blue fr">{{ $t('user.newRegistration') }}</a>
                                     <!-- <a href="javaScript:void(0)" onclick="otherLogin(2)" class="col-blue fr">手机验证码登录</a> -->
                                 </div>
                             </div>
                         </div>
-                        <p class="Agreement">登录即表示同意平台 <a
+                        <p class="Agreement">{{ $t('user.loginPagePrompt') }} <a
                                 href="https://homewh.chaoxing.com/agree/privacyPolicy?appId=900001"
                                 target="_blank">《隐私政策》</a>和 <a
                                 href="https://homewh.chaoxing.com/agree/userAgreement?appId=900001"

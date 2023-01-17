@@ -73,7 +73,7 @@ const registerModule = {
     },
 
     // 点击发送验证码
-    sendCode: function(){
+    sendCode: function(that){
         let sendCodeBtn = document.getElementById("sendCodeBtn")
         let showcountdown = document.getElementById("showcountdown")
         let emailInput = document.getElementById("email")
@@ -107,11 +107,11 @@ const registerModule = {
         let time = 60
         let mySetTime = setInterval(()=>{
             time--
-            showcountdown.innerText = time + "s后重新获取"
+            showcountdown.innerText = time + that.$t('user.secondPromat')
             if(time<0){
                 showcountdown.style.display = "none" 
                 sendCodeBtn.style.display = "block" 
-                showcountdown.innerText ="60s后重新获取"
+                showcountdown.innerText ="60"+that.$t('user.secondPromat')
                 clearInterval(mySetTime)
             }
         }, 1000);

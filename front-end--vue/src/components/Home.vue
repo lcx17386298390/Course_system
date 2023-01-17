@@ -3,16 +3,19 @@
     <div id="home">
       <Head/>
       <router-view v-bind:myMes="myMes"></router-view>
+      <Tail/>
     </div>
 </template>
   
 <script>
   import Head from '../components/Head'
+  import Tail from '../components/Tail'
   import homeJs from '@/assets/style/js/homeVue.js'
   export default {
       name: 'HomeTest',
       components:{
           Head,
+          Tail
       },
       data(){
         return{
@@ -21,7 +24,7 @@
                 imagePath: "",
                 introduction: "",
                 name:"",
-                phone:"",
+                email:"",
                 position:"",
                 school:"",
                 type:1,

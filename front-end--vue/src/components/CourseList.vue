@@ -6,19 +6,19 @@
                 <div class="qFicReen_title"></div>
                 <div class="qFicReen_box">
                     <div class="qFicReen_item">
-                        <span class="qFicReen_name">学  科：</span>
+                        <span class="qFicReen_name">{{ $t('user.discipline.discipline') }}</span>
                         <div class="qFicReen_con">
                             <ul class="clearAfter" id="coursecategory">
-                                <li class="active" value="0"><a>全部</a></li>
-                                <li value="7754" data-value="C4"><a>医学</a></li>
-                                <li value="7745" data-value="C4"><a>哲学</a></li>
-                                <li value="7752" data-value="C4"><a>工学</a></li>
-                                <li value="7748" data-value="C4"><a>教育学</a></li>
-                                <li value="7749" data-value="C4"><a>文学</a></li>
-                                <li value="7747" data-value="C4"><a>法学</a></li>
-                                <li value="7751" data-value="C4"><a>理学</a></li>
-                                <li value="7756" data-value="C4"><a>管理学</a></li>
-                                <li value="7757" data-value="C4"><a>艺术学</a></li>
+                                <li class="active" value="0"><a>{{ $t('user.discipline.all') }}</a></li>
+                                <li value="7754" data-value="C4"><a>{{ $t('user.discipline.medicalScience') }}</a></li>
+                                <li value="7745" data-value="C4"><a>{{ $t('user.discipline.philosophy') }}</a></li>
+                                <li value="7752" data-value="C4"><a>{{ $t('user.discipline.engineering') }}</a></li>
+                                <li value="7748" data-value="C4"><a>{{ $t('user.discipline.pedagogy') }}</a></li>
+                                <li value="7749" data-value="C4"><a>{{ $t('user.discipline.literature') }}</a></li>
+                                <li value="7747" data-value="C4"><a>{{ $t('user.discipline.jurisprudence') }}</a></li>
+                                <li value="7751" data-value="C4"><a>{{ $t('user.discipline.neoConfucianism') }}</a></li>
+                                <li value="7756" data-value="C4"><a>{{ $t('user.discipline.management') }}</a></li>
+                                <li value="7757" data-value="C4"><a>{{ $t('user.discipline.art') }}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -451,7 +451,8 @@ export default {
             },
             pageCourseList:[],
             pageCouseBeginNum:0,
-            pageNum:1
+            pageNum:1,
+            that: this
         }
     },
     methods:{
@@ -462,7 +463,7 @@ export default {
                 this.pageCourseList = this.successMes.data.allCourseList.slice(this.pageCouseBeginNum,this.pageCouseBeginNum+20)
                 callback(res)
                 let num = this.successMes.data.allCourseList.length
-                this.initialPageBtn(num)
+                this.initialPageBtn(num,this.that)
             })
         },
         upMesStart: function(){
@@ -499,14 +500,14 @@ export default {
             this.pageCourseList = this.successMes.data.allCourseList.slice(this.pageCouseBeginNum,this.pageCouseBeginNum+20)
         },
         // 跳转按钮的初始化
-        initialPageBtn: function(num){
+        initialPageBtn: function(num,that){
             let btnDivHTML = ""
-            btnDivHTML+="<li class='xl-prevPage  xl-disabled' onclick='prePage()'>上一页</li>"
+            btnDivHTML+="<li class='xl-prevPage  xl-disabled' onclick='prePage()'>"+that.$t('user.prePage')+"</li>"
             let jumpBtnDiv = document.getElementsByName("jumpBtnDiv")[0]
             for(let i = 1;i<=Math.ceil(num/20);i++){
                 btnDivHTML+="<li onclick='resetBeginNum("+i+")' name='pageBtn'>"+i+"</li>"
             }
-            btnDivHTML+="<li class='xl-nextPage' onclick='nextPage()'>下一页</li><li class='xl-jumpText xl-disabled'>跳转到<input type='number' id='xlJumpNum'>页</li><li class='xl-jumpButton' onclick='jumpPage()'>确定</li>"
+            btnDivHTML+="<li class='xl-nextPage' onclick='nextPage()'>"+that.$t('user.nextPage')+"</li><li class='xl-jumpText xl-disabled'>"+that.$t('user.jumpTo')+"<input type='number' id='xlJumpNum'>"+that.$t('user.page')+"</li><li class='xl-jumpButton' onclick='jumpPage()'>"+that.$t('user.determine')+"</li>"
             jumpBtnDiv.innerHTML = btnDivHTML
             document.getElementsByName("pageBtn")[0].className = "xl-active"
         },

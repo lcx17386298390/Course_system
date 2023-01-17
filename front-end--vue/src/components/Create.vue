@@ -2,10 +2,10 @@
   <div style="height:333px;width:752px;overflow:auto">
     <ul class="qkcListPic1 clearAfter" id="clist">
       <li>
-        <div class="courseAddDiv">
-          <a href="/#" target="_blank">
+        <div class="courseAddDiv" style="text-align:center">
+          <a href="/#/createCourse" target="_blank" >
             <img src="../assets/style/image/courseAddBtn.png" style="height:130px;width:130px"><br>
-            <!-- <span>点击创建课程</span> -->
+            点击创建课程
           </a>
         </div>
       </li>
@@ -43,7 +43,7 @@ export default {
   },
   methods:{
     getCreateCourseList: function(callback){
-      myCreateJs.getCourseByTeacherNumber(this.myMes.data.phone).then(res=>{
+      myCreateJs.getCourseByTeacherNumber(this.myMes.data.email).then(res=>{
         this.createCourseList = res.data
         callback(res)
       })

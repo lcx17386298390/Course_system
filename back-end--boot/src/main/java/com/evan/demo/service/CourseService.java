@@ -2,9 +2,11 @@ package com.evan.demo.service;
 
 import com.evan.demo.mapper.CourseMapper;
 import com.evan.demo.pojo.Course;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 
 
@@ -20,5 +22,9 @@ public class CourseService {
 
     public Course getCourseByCourseNumber(String courseNumber){
         return courseMapper.getCourseByCourseNumber(courseNumber);
+    }
+
+    public void addCourse(String courseNumber, String courseName, String teacherName, String teacherSchool, String imagePath, int state, int learnNumber, int commentsNumber,                   @Param("teacherAccountNumber") String teacherAccountNumber, Date startDate, Date endDate, Integer classHours, String courseIntroduction) {
+        courseMapper.addCourse(courseNumber, courseName, teacherName, teacherSchool, imagePath, state, learnNumber, commentsNumber,teacherAccountNumber,startDate, endDate,classHours, courseIntroduction);
     }
 }

@@ -12,19 +12,19 @@
                 </dl>
                 <ul class="u-sd f-cb f-tal f-fs1" data-v-87842d9c="">
                     <li class="coupon crt-s" data-v-87842d9c="" id="myMes" name="btnList">
-                        <router-link to="myMes" data-v-87842d9c="" >我的信息</router-link>
+                        <router-link to="myMes" data-v-87842d9c="" >{{$t('user.myMes')}}</router-link>
                     </li>
                     <li class="coupon" data-v-87842d9c="" id="createBtn" name="btnList" :style="{display:(myMes.data.type==1?'block':'none')}">
-                        <router-link to="myCreated" data-v-87842d9c="" >我创建的课程</router-link>
+                        <router-link to="myCreated" data-v-87842d9c="" >{{$t('user.createCourse')}}</router-link>
                     </li>
                     <li class="course" data-v-87842d9c="" id="learnedBtn" name="btnList">
-                        <router-link to="myLearned" data-v-87842d9c="" >已学习课程</router-link>
+                        <router-link to="myLearned" data-v-87842d9c="" >{{$t('user.coursesLearned')}}</router-link>
                     </li>
                     <!-- <li class="pay crt-s" data-v-87842d9c="" id="collectionBtn" name="btnList">
                         <router-link to="myCollection" data-v-87842d9c="" >我的收藏</router-link>
                     </li> -->
                     <li class="plr" data-v-87842d9c="" id="playRecordBtn" name="btnList">
-                        <router-link to="myPlayRecord" data-v-87842d9c="" >播放记录</router-link>
+                        <router-link to="myPlayRecord" data-v-87842d9c="" >{{$t('user.playbackRecord')}}</router-link>
                     </li>
                 </ul>
             </div>

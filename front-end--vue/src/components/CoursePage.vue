@@ -512,10 +512,9 @@
                     <dl class="mgCard_deta">
                         <dt>
                             <h2 class="mgCard_h2" title="装饰工程计量与计价">{{ course.data.courseName }}</h2>
-                            <span class=" ">
-                            </span>
                         </dt>
                         <dd class="teacher">主讲教师：{{ course.data.teacherName }} {职位} /{{ course.data.teacherSchool }}</dd>
+    
                         <!-- <dd>期次：
                             <span class="mgCard_dijiqi">
                                 <a class="mgCard_dijiqi_name" style="cursor: pointer">
@@ -531,7 +530,7 @@
                                 </span>
                             </span>
                         </dd> -->
-                        <iframe src="/video.mp4" width="100%" height="100%" border="0"></iframe>
+                        <!-- <iframe src="/video.mp4" width="100%" height="100%" border="0"></iframe> -->
                         <dd>起止日期：{{course.data.startDate}}至{{ course.data.endDate }}</dd>
                         <dd>教学进度：
                             <span class="mgCard_state">
@@ -562,7 +561,7 @@
                     <dd>累计互动次数</dd>
                 </dl> -->
                 <div class="service_bnt">
-                    <a class="xsbntLiner" href="javascript:void(0)" onclick="msgtip()">加入课程</a>
+                    <a class="xsbntLiner" href="javascript:void(0)" onclick="msgtip()">{{ $t('user.coursePage.joinCourse') }}</a>
                 </div>
             </div>
         </div>
@@ -571,11 +570,11 @@
             <!-- 导航栏 -->
             <div class="mgCard_tab mgCard_blue">
                 <ul class="mgCard_tabName">
-                    <li class="current" id="li_introduce" name="moduleBtn">课程简介<span class="line"></span></li>
-                    <li id="li_knowledge-catalog" class="" name="moduleBtn">课程章节<span class="line"></span><span
+                    <li class="current" id="li_introduce" name="moduleBtn">{{ $t('user.coursePage.courseIntroduction') }}<span class="line"></span></li>
+                    <li id="li_knowledge-catalog" class="" name="moduleBtn">{{ $t('user.coursePage.coursChapter') }}<span class="line"></span><span
                             class="mgCard_shidu"></span></li>
-                    <li id="li_coursebbs" class="" name="moduleBtn">师生互答<span class="line"></span></li>
-                    <li id="li_courseEvaluate" class="" name="moduleBtn">课程评价<span class="line"></span></li>
+                    <li id="li_coursebbs" class="" name="moduleBtn">{{ $t('user.coursePage.comment') }}<span class="line"></span></li>
+                    <li id="li_courseEvaluate" class="" name="moduleBtn">{{ $t('user.coursePage.curriculumEvaluation') }}<span class="line"></span></li>
                     <!-- <li class="">常见问题<span class="line"></span></li> -->
                 </ul>
             </div>
@@ -597,7 +596,7 @@
                     <!-- 课程简介（文字叙述） -->
                     <div class="kc_intro_item">
                         <h2 class="kc_intro_h2">
-                            这门课会讲什么？
+                            {{ $t('user.coursePage.mes1') }}
                         </h2>
                         <div class="kc_intro_text ans-cc">
                             <p><span style="text-indent: 36px; "></span><span style="text-indent: 36px; ">&nbsp;{{ course.data.courseIntroduction }}</span></p>
@@ -905,7 +904,7 @@
                             <ul class="mkCata_list" v-for="(subValue,subIndex) in value.subChapter" :key="subIndex">
                                 <li class="tryingRead">
                                     <span class="mkCata_ico"></span>
-                                    <a href="/#"
+                                    <a :href="'/#/chapterPage/'+course.data.courseNumber+'/'+(index+1)+'.'+(subIndex+1)"
                                         target="_blank">
                                         {{ index+1 }}.{{ subIndex+1 }}
                                         {{ subValue.title }}
@@ -924,8 +923,8 @@
 
                     <div class="mkpt_search">
                         <div class="mkpt_form">
-                            <textarea class="mkpt_area fl" placeholder="写下您的提问..." id="askTopic"></textarea>
-                            <input type="button" name="button" value="提问" class="mkpt_bnt bgBlue fr"
+                            <textarea class="mkpt_area fl" :placeholder="this.$t('user.coursePage.curriculumEvaluation')" id="askTopic"></textarea>
+                            <input type="button" name="button" :value="this.$t('user.coursePage.askQuestions')" class="mkpt_bnt bgBlue fr"
                                 @click="replyTopic(that.$route.params.courseNumber,that,0,myMes.data.email)">
                         </div>
                     </div>
@@ -938,7 +937,7 @@
                                 <div class="mkpt_text">
                                     <div class="mkpt_right fr">
                                         <a class="kc_myHuida" href="javascript:"
-                                            @click="viewReply('topic_replydiv'+value.mainComment.sub_id)">我要回答</a>
+                                            @click="viewReply('topic_replydiv'+value.mainComment.sub_id)">{{ $t('user.coursePage.wantAnswer') }}v</a>
                                         <!-- <span class="kc_myZan" href="javascript:void(0)"
                                             onclick="parseOrCancel(&#39;445252756&#39;,1)"
                                             id="isPraise_445252756">3</span> -->
@@ -1025,7 +1024,7 @@
                     <input type="hidden" id="person_login" value="false">
                     <!-- <a class="big_mypl fr" href="https://mooc1.xueyinonline.com/coursestar?courseId=227039651&amp;clazzId=59900316&amp;edit=false">我要评价</a> -->
                     <div class="mkEval_big">
-                        <span class="big_name">课程评分：</span><span class="big_num"> 0.0</span>
+                        <span class="big_name">{{ $t('user.coursePage.coursGrading') }}</span><span class="big_num"> 0.0</span>
                         <!-- 评分星星 -->
                         <!-- <span class="big_xing ss0"></span> -->
                         <span class="big_text">共0人评价</span>
@@ -1150,6 +1149,9 @@ export default {
     },
     props:['myMes'],
     methods:{
+        resetLang: function(){
+            this.$i18n.locale=='en'?this.$i18n.locale='zh':this.$i18n.locale='en'
+        },
         pageInitialization: function(callback){
             // 数据初始化
             coursePageJs.pageInitialization(this.that).then(course=>{

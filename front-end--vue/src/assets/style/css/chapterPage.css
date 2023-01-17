@@ -1,0 +1,36 @@
+.fanyaPreview{ width:100%; min-width:1280px; position:absolute;}
+/*章节左右pop*/
+.fanyaPreview_left{ padding-left:308px;}
+.fanyaPreview_right{ padding-right:308px;}
+.posChapter_left{ left:0; bottom:0;}
+.posChapter_right{ right:0; bottom:0;}
+.posChapter{ width:300px; position:fixed; background:#FFFFFF; z-index:99; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;}
+.prev_box{ width:930px; background:#F5F8FB; margin:30px auto 0; border-radius:6px; position:relative; -webkit-box-shadow:0 2px 17px 0 rgba(225,237,241,0.81); box-shadow:0 2px 17px 0 rgba(225,237,241,0.81);}
+.prev_box{ width:930px; background:#F5F8FB; margin:30px auto 0; border-radius:6px; position:relative; -webkit-box-shadow:0 2px 17px 0 rgba(225,237,241,0.81); box-shadow:0 2px 17px 0 rgba(225,237,241,0.81);}
+.prev_title_pos{ width:100%; position:absolute; z-index:5;}
+.prev_title{ padding:12px 80px 8px; height:56px; line-height:56px; font-size:18px; color:#333333; font-weight:600; text-align:center; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.prev_tab{ position:relative;}
+.prev_list{ width:830px; height:44px; margin:0 10px; padding-top:76px; overflow:hidden; position:relative; text-align:center;}
+.prev_list ul{ height:44px; position:absolute; display: -webkit-flex; display: -moz-flex;display:-ms-flex;display: flex; white-space:nowrap; left:0px; font-size:0;text-align: left;}
+.prev_list li{ width:106px; height:44px; padding:0 12px; background:#F5F8FB; font-size:14px; color:#9FB9CD; display:inline-block; border-radius:6px 6px 0 0; position:relative; cursor:pointer; -webkit-box-shadow:0px 2px 17px 0px rgba(225,237,241,0.81); box-shadow:0px 2px 17px 0px rgba(225,237,241,0.81);}
+/*.prev_list li+li{ margin-left:10px;}*/
+.prev_list li{ margin-right:10px;}
+.prev_list li .num{ width:18px; height:18px; line-height:18px; margin:0 4px 2px 0; background:#B5D3F6; font-size:10px; color:#FFF; border-radius:18px; display:inline-block; vertical-align:middle; text-align:center;}
+.prev_list li.active{ background:#FFFFFF; color:#38537C;}
+.prev_list li.active .num{ background:#3A8BFF;}
+.prev_list li:hover{ background:#FFFFFF;}
+.prev_list li .prev_white{ height:30px; line-height:1; padding-top:14px; border-radius:6px 6px 0 0; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; text-align:center;}
+.prev_list li.active .prev_white{ padding:14px 12px 0; background:#FFFFFF; position:absolute; top:0; left:0; right:0; z-index:99;}
+.ans-attach-ct,.ans-img-wrap,.ans-img-wrap *{text-indent:0;}
+.wrap {width: 834px;margin: 0 auto;}
+div.ans-cc iframe.ans-attach-online{width:100%;height:542px;background-color:#fff;border:1px #ccc solid;overflow:hidden;min-width: 676px;}
+body.ans-cc[contenteditable] iframe.ans-insertaudio-module.ans-attach-online{height:150px;width:435px;}
+body.ans-cc[contenteditable] iframe.ans-insertmooc-module{height:21px;width:435px;}
+body.ans-cc[contenteditable] iframe.ans-plugin-iframe{  border: 1px #ccc solid;border-radius: 3px;}
+iframe.ans-insertvideo-online{height:537px;margin-left:0em;}
+.prev_main{ padding:40px 40px; background:#FFFFFF; position:relative; border-radius:6px; -webkit-box-shadow:0 2px 17px 0 rgba(225,237,241,0.81); box-shadow:0 2px 17px 0 rgba(225,237,241,0.81);}
+.prev_main_text{ min-height:1000px; line-height:2; font-size:14px; color:#181E33;}
+.prev_main_text img{ max-width:820px;}
+.ans-attach-ct .ans-job-icon{width:122px;height:25px;background:url(../image/job-status.png) no-repeat; clear:both;}
+
+
