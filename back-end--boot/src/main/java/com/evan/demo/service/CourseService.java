@@ -24,7 +24,7 @@ public class CourseService {
         return courseMapper.getCourseByCourseNumber(courseNumber);
     }
 
-    public void addCourse(String courseNumber, String courseName, String teacherName, String teacherSchool, String imagePath, int state, int learnNumber, int commentsNumber,                   @Param("teacherAccountNumber") String teacherAccountNumber, Date startDate, Date endDate, Integer classHours, String courseIntroduction) {
+    public void addCourse(String courseNumber, String courseName, String teacherName, String teacherSchool, String imagePath, int state, int learnNumber, int commentsNumber, String teacherAccountNumber, String startDate, String endDate, Integer classHours, String courseIntroduction) {
         courseMapper.addCourse(courseNumber, courseName, teacherName, teacherSchool, imagePath, state, learnNumber, commentsNumber,teacherAccountNumber,startDate, endDate,classHours, courseIntroduction);
     }
 }

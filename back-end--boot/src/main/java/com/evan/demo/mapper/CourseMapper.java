@@ -35,8 +35,8 @@ public interface CourseMapper {
                    @Param("learnNumber") int learnNumber,
                    @Param("commentsNumber") int commentsNumber,
                    @Param("teacherAccountNumber") String teacherAccountNumber,
-                   @Param("startDate") Date startDate,
-                   @Param("endDate") Date endDate,
+                   @Param("startDate") String startDate,
+                   @Param("endDate") String endDate,
                    @Param("classHours") Integer classHours,
                    @Param("courseIntroduction") String courseIntroduction);
 }

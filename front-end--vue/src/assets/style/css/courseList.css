@@ -37,5 +37,5 @@
 #page li.xl-jumpText { background-color:rgba(0,0,0,0); border-color:rgba(0,0,0,0); opacity:1;}
 #page li.xl-jumpText:hover{ background-color:rgba(0,0,0,0) !important; border-color:rgba(0,0,0,0) !important;}
 #page li.xl-jumpButton{ padding:0 5px;}
-#xlJumpNum { width:35px; height:28px; border:solid #dce0e0 1px; margin:0 3px; vertical-align:top; text-align:center;}
+#xlJumpNum { width:35px; border:solid #dce0e0 1px; margin:0 3px; vertical-align:top; text-align:center;}
 

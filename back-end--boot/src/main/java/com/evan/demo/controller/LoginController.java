@@ -15,10 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 @CrossOrigin
@@ -116,7 +115,7 @@ public class LoginController {
     public Object upload(@RequestParam("file") MultipartFile file,
                          @RequestParam("courseName") String courseName,
                          @RequestParam("courseIntroduction") String courseIntroduction,
-                         @RequestParam("classHours") String classHours,
+                         @RequestParam("classHours") int classHours,
                          @RequestParam("endDate") String endDate,
                          @RequestParam("teacherAccountNumber") String teacherAccountNumber) {
 //        if (files.length == 0) {
@@ -143,28 +142,28 @@ public class LoginController {
 //                log.error(e.toString(), e);
 //            }
 //        }
-        System.out.println(courseName+"+"+file.getOriginalFilename()+"+"+courseIntroduction+"+"+classHours+"+"+endDate);
-        return null;
-//        if (file==null|| file.isEmpty()){
-//            return "上传失败，请选择文件";
-//        }
-//        String fileName;
-//        /*定义上传路径*/
-//        String filePath = "C:/Users/lcx17/Desktop/upFile/";
-//        fileName = file.getOriginalFilename();
-//        File dest = new File(filePath + fileName);
-//        try {
-//                file.transferTo(dest);
-//                List<Course> courseList = coummentSortCourseService.getCommentSortCourse();
-//                int courseNum = courseList.size()+1;
-//                String num = Integer.toString(1000000000+courseNum);
-////                courseService.addCourse(num,courseName,teacherName,teacherSchool,fileName,1,0,0);
-//            } catch (IOException e) {
-//                log.error(e.toString(), e);
-//                return "上传失败";
-//            }
-//
-//        return "上传成功！";
+        if (file==null|| file.isEmpty()){
+            return "上传失败，请选择文件";
+        }
+        String fileName;
+        /*定义上传路径*/
+        String filePath = "C:/Users/lcx17/Desktop/upFile/";
+        fileName = file.getOriginalFilename();
+        File dest = new File(filePath + fileName);
+        try {
+                file.transferTo(dest);
+                List<Course> courseList = coummentSortCourseService.getCommentSortCourse();
+                int courseNum = courseList.size()+1;
+                String num = Integer.toString(1000000000+courseNum);
+                User teacher = userMesService.getUserByEmail(teacherAccountNumber);
+                Date startDate = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                courseService.addCourse(num,courseName,teacher.getName(),teacher.getSchool(),fileName,1,0,0,teacherAccountNumber,sdf.format(startDate),endDate,classHours,courseIntroduction);
+            } catch (IOException e) {
+                log.error(e.toString(), e);
+                return "上传失败";
+        }
+        return "success";
     }
 
 
@@ -305,4 +304,22 @@ public class LoginController {
         String[] nums = chapterNum.split("\\.");
         return chapterService.getChapterByCourseNumberAndOwnerIdAndNum(courseNumber,Integer.parseInt(nums[0]),Integer.parseInt(nums[1]));
     }
+
+    /*添加主章节api*/
+    @ResponseBody
+    @PostMapping("/addMainChapter")
+    public Object addMainChapter(@RequestParam("courseNumber")String courseNumber,@RequestParam("num")Integer num){
+        chapterService.addChapter(courseNumber,0,"单元"+num,num,null,null);
+        return "success";
+    }
+
+    /*添加子章节api*/
+    @ResponseBody
+    @PostMapping("/addSubChapter")
+    public Object addSubChapter(@RequestParam("courseNumber")String courseNumber,@RequestParam("num")Integer num,@RequestParam("owner_id")int owner_id){
+        chapterService.addChapter(courseNumber,1,"新建目录",num,null,owner_id);
+        return "success";
+    }
+
+
 }

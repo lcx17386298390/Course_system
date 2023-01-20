@@ -12,13 +12,13 @@
       <li v-for="(value, index) in createCourseList" :key="index">
         <div class="qExpress_padd qNima">
           <div class="qExpress_pic">
-            <a href="/#" target="_blank">
+            <a :href="'/#/editCourse/'+value.courseNumber+'/chapter'" target="_blank">
               <img :src="'/images/' + value.imagePath">
             </a>
             <span></span>
           </div>
           <dl class="qExpress_dl">
-            <dt><a href="/#" target="_blank">{{ value.courseName }}</a></dt>
+            <dt><a :href="'/#/editCourse/'+value.courseNumber+'/chapter'" target="_blank">{{ value.courseName }}</a></dt>
             <!-- <dd>{{ value.teacherSchool }} | {{ value.teacherName }}</dd> -->
           </dl>
           <div class="qExpress_state">

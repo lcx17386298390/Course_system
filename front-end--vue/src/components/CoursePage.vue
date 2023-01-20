@@ -900,7 +900,7 @@
                 <div class="mkCata" style="display: none;" name="displayModuel">
                     <div class="mkCata">
                         <div class="mkCata_item" v-for="(value,index) in courseChapters.data" :key="index">
-                            <h2 class="mkCata_name">{{ value.mainChapter.title }}</h2>
+                            <h2 class="mkCata_name">单元{{ index+1 }}</h2>
                             <ul class="mkCata_list" v-for="(subValue,subIndex) in value.subChapter" :key="subIndex">
                                 <li class="tryingRead">
                                     <span class="mkCata_ico"></span>

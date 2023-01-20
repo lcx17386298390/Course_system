@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class Chapter {
     private String courseNumber;
-    private String chapterType;
+    private Integer chapterType;
     private String title;
     private Integer num;
     private String fileName;

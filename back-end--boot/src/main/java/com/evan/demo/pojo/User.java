@@ -3,14 +3,14 @@ package com.evan.demo.pojo;
 import org.apache.ibatis.annotations.Param;
 
 public class User {
-    String userPaw;
-    String name;
-    String school;
-    String position;
-    String introduction;
-    String imagePath;
-    int type;
-    String email;
+    private String userPaw;
+    private String name;
+    private String school;
+    private String position;
+    private String introduction;
+    private String imagePath;
+    private int type;
+    private String email;
 
     public String getUserPaw() {
         return userPaw;

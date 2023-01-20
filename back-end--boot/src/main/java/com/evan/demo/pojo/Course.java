@@ -1,12 +1,8 @@
 package com.evan.demo.pojo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 @Data
 public class Course {

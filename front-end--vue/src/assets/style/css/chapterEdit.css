@@ -1,0 +1,530 @@
+.fanyaChapterWhite {
+    background: #FFFFFF;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 2px 17px 0 rgba(239, 239, 239, 0.50);
+    box-shadow: 0 2px 17px 0 rgba(239, 239, 239, 0.50);
+}
+.chapter_body {
+    margin-top: 10px; /*min-height:1000px;*/
+    position: relative;
+    padding-bottom: 24px;
+    background: #FFFFFF;
+}
+.chapter_th {
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #A8A8B3;
+    position: relative;
+    margin: 10px 30px 0 20px;
+}
+.chapter_td {
+    margin: 10px 30px 0 20px;
+    position: relative;
+}
+.loadMore {
+    padding: 295px 0 0 0;
+    text-align: center;
+}
+
+.loadMore .loadText, .loadMore .loadingText, .loadMore .loadEndText {
+    display: none;
+    position: relative;
+    font-size: 14px;
+    color: #c7c8d4;
+    text-align: center;
+}
+
+.loadMore .loadText {
+    display: inline-block;
+    padding-right: 18px;
+    cursor: pointer;
+}
+
+.loadMore .loadText:after {
+    position: absolute;
+    content: '';
+    top: 4px;
+    right: 0;
+    width: 13px;
+    height: 13px;
+    /* background: url(/mooc2-ans/images/loadMoreArrow.png) center center/13px auto no-repeat; */
+}
+
+.loadMore .loadText:hover {
+    color: #ACBFD9;
+}
+
+.loadMore .loadingText {
+    padding-left: 26px;
+}
+
+.loadMore .loadingText:before {
+    position: absolute;
+    content: '';
+    top: 2px;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    /* background: url(/mooc2-ans/images/loadMoreLoading.png) center center/18px auto no-repeat; */
+    -webkit-transform: rotate(0deg) translateZ(0);
+    -webkit-transition-duration: 0ms;
+    -webkit-animation-name: loading;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+
+.loadMore.loading .loadingText {
+    display: inline-block;
+}
+
+.loadMore.loading .loadText, .loadMore.loading .loadEndText {
+    display: none;
+}
+
+.loadMore.loadEnd .loadEndText {
+    display: inline-block;
+}
+
+.loadMore.loadEnd .loadText, .loadMore.loadEnd .loadingText {
+    display: none;
+}
+
+.catalog_level li .chapter_item:before, .chapter_verticalLine {
+    border-color: #DADFE6;
+}
+
+.chapter_verticalLine {
+    width: 1px;
+    border-left: 1px dashed #F2F2F2;
+    position: absolute;
+    left: 46px;
+    top: 20px;
+    bottom: 24px
+}
+
+.chapter_unit {
+    padding: 6px 0;
+}
+
+.chapter_item {
+    padding-right: 320px;
+}
+
+.chapter_item {
+    padding-right: 250px;
+    position: relative;
+}
+
+.catalog_level li .catalog_title {
+    min-height: 22px;
+}
+
+.catalog_level li .chapter_item .catalog_title {
+    background: none;
+}
+
+.catalog_level li .catalog_name {
+    width: 496px;
+    max-height: 44px;
+    font-size: 15px;
+    line-height: 22px;
+}
+
+.catalog_level li li .catalog_name {
+    width: 480px;
+}
+
+.catalog_level li li li .catalog_name {
+    width: 464px;
+}
+
+.catalog_level li li li li .catalog_name {
+    width: 448px;
+}
+
+.catalog_level li li li li li .catalog_name {
+    width: 432px;
+}
+
+.catalog_level li .catalog_title {
+    padding-left: 74px;
+}
+
+.catalog_level li li .catalog_title {
+    padding-left: 90px;
+}
+
+.catalog_level li li li .catalog_title {
+    padding-left: 106px;
+}
+
+.catalog_level li li li li .catalog_title {
+    padding-left: 122px;
+}
+
+.catalog_level li li li li li .catalog_title {
+    padding-left: 138px;
+}
+
+.catalog_level {
+    padding-left: 0;
+}
+
+.catalog_level ul {
+    padding-left: 0;
+}
+
+.catalog_posit .catalog_level {
+    padding-left: 0;
+}
+
+.chapter_td .inputCheck {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    margin-top: -9px;
+}
+
+.chapter_td .catalog_num {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    margin-top: -10px;
+}
+
+.catalog_posit .catalog_num {
+    left: 48px;
+}
+
+.chapter_td .catalog_title {
+    padding-left: 74px;
+}
+
+.catalog_num {
+    height: 20px;
+    padding-left: 14px;
+    background: #D0D5DB;
+    border-radius: 10px;
+    margin: 10px 20px 0 0;
+}
+
+.catalog_num > span {
+    min-width: 16px;
+    height: 16px;
+    padding: 4px;
+    margin: -2px -4px 0 0;
+    background: #D0D5DB;
+    display: block;
+    border-radius: 20px;
+}
+
+.catalog_num > span > i {
+    min-width: 12px;
+    height: 16px;
+    padding: 0 2px;
+    line-height: 16px;
+    background: #FFF;
+    font-size: 12px;
+    font-family: Arial;
+    color: #A8A8B3;
+    border-radius: 20px;
+    display: block;
+    text-align: center;
+}
+
+.catalog_name {
+    line-height: 40px;
+    font-size: 16px;
+    color: #181E33;
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.catalog_name a {
+    color: #181E33;
+}
+
+.catalog_name a:hover {
+    color: #3A4B87;
+}
+
+.catalog_level {
+    padding-left: 38px;
+    padding-top: 6px;
+    display: none;
+}
+
+.catalog_level ul {
+    padding-left: 16px;
+}
+
+.catalog_level li {
+    margin-top: 6px;
+}
+
+.catalog_level li .catalog_name {
+    font-weight: normal;
+}
+
+.catalog_level {
+    padding-left: 0;
+    transition: all 0.5s;
+}
+
+.catalog_level ul {
+    padding-left: 0;
+}
+
+.catalog_level li .catalog_title {
+    min-height: 22px;
+}
+
+.catalog_level li .chapter_item .catalog_title {
+    background: none;
+}
+
+.catalog_level li .catalog_name {
+    width: 496px;
+    max-height: 44px;
+    font-size: 15px;
+    line-height: 22px;
+}
+
+.catalog_level li li .catalog_name {
+    width: 480px;
+}
+
+.catalog_level li li li .catalog_name {
+    width: 464px;
+}
+
+.catalog_level li li li li .catalog_name {
+    width: 448px;
+}
+
+.catalog_level li li li li li .catalog_name {
+    width: 432px;
+}
+
+.catalog_level li .catalog_title {
+    padding-left: 74px;
+}
+
+.catalog_level li li .catalog_title {
+    padding-left: 90px;
+}
+
+.catalog_level li li li .catalog_title {
+    padding-left: 106px;
+}
+
+.catalog_level li li li li .catalog_title {
+    padding-left: 122px;
+}
+
+.catalog_level li li li li li .catalog_title {
+    padding-left: 138px;
+}
+
+.catalog_level .catalog_title .catalog_name {
+    padding: 13px 20px 13px 0;
+    width: auto;
+    cursor: pointer;
+}
+
+.catalog_level li .catalog_name {
+    width: 496px;
+    max-height: 44px;
+    font-size: 15px;
+    line-height: 22px;
+}
+
+
+.catalog_task {
+    width: auto;
+    height: 24px;
+    position: absolute;
+    left: 34px;
+    right: auto;
+    top: 50%;
+    margin-top: -12px;
+    z-index: 2;
+}
+
+.catalog_task .catalog_points_yi, .catalog_task .catalog_points_er, .catalog_task .catalog_points_sa {
+    min-width: 12px;
+    width: auto;
+    padding: 0 6px;
+    height: 24px;
+    line-height: 24px;
+    background: #ffb04e;
+    font-size: 14px;
+    color: #FFFFFF;
+    text-align: center;
+    box-shadow: none;
+}
+
+.catalog_posit .catalog_task {
+    left: 62px;
+}
+
+.xs_table .catalog_task {
+    width: 24px;
+}
+
+.xs_table .catalog_task .catalog_jindu {
+    height: 24px;
+}
+
+.xs_table .catalog_task .icon_yiwanc {
+    width: 24px;
+    height: 24px;
+    /* background: url(/mooc2-ans/images/courselist/icon_yiwanc.png) no-repeat center center/24px 24px; */
+}
+
+.xs_table .catalog_task .icon-bukaifang, .xs_table .catalog_task .icon-dingshi, .xs_table .catalog_task .icon-chuangguan {
+    width: 24px;
+    height: 24px;
+    /* background: url(/mooc2-ans/images/courselist/icon-bukaifang.png) no-repeat center center/24px 24px; */
+    left: 0;
+    right: auto;
+}
+
+.xs_table .catalog_task .icon-bukaifang:before {
+    display: none;
+}
+
+.xs_table .catalog_task .icon-bukaifang:before, .xs_table .catalog_task .icon-dingshi:before, .xs_table .catalog_task .icon-chuangguan:before {
+    content: ""
+}
+
+.xs_table .catalog_task .icon-bukaifang .bntHoverTips, .xs_table .catalog_task .icon-dingshi .bntHoverTips, .xs_table .catalog_task .icon-chuangguan .bntHoverTips {
+    left: -53px;
+    margin-left: 0;
+}
+
+.xs_table .catalog_task .icon-bukaifang .bntHoverTips i, .xs_table .catalog_task .icon-dingshi .bntHoverTips i, .xs_table .catalog_task .icon-chuangguan .bntHoverTips i {
+    left: 58px;
+    margin-left: 0;
+}
+
+.catalog_task .catalog_points_yi, .catalog_task .catalog_points_er, .catalog_task .catalog_points_sa {
+    min-width: 12px;
+    width: auto;
+    padding: 0 6px;
+    height: 24px;
+    line-height: 24px;
+    background: #ffb04e;
+    font-size: 14px;
+    color: #FFFFFF;
+    text-align: center;
+    box-shadow: none;
+}
+
+.catalog_points_yi {
+    width: 20px;
+    background: url(../image/chapter_icons.png) no-repeat 0 -120px/150px auto;
+}
+
+.catalog_points_yi, .catalog_points_er, .catalog_points_sa {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #FFF;
+    text-align: center;
+    font-family: arial;
+    display: block;
+    border-radius: 20px;
+    -webkit-box-shadow: 0 2px 6px 0 rgba(255, 182, 28, 0.57);
+    box-shadow: 0 2px 6px 0 rgba(255, 182, 28, 0.57);
+}
+
+.catalog_title:hover {
+    background: #F5F7FA;
+}
+
+.catalog_edit {
+    position: absolute;
+    right: 264px;
+    top: 50%;
+    margin-top: -14px;
+}
+
+.catalog_level li .catalog_name:hover, .catalog_level li .catalog_name:hover a {
+    color: #3A8BFF;
+}
+
+.catalog_level li .chapter_item:hover:after {
+    background: #F0F6FF;
+    border-radius: 6px;
+}
+
+.catalog_level li .chapter_item:hover .catalog_title {
+    background: #F0F6FF;
+}
+
+.chapter_item:hover a{
+    display: block;
+}
+
+.catalog_title {
+    height: auto;
+    min-height: 24px;
+    padding-right: 0;
+    position: relative;
+}
+
+.chapter_head {
+    padding: 20px 30px;
+    border-bottom: solid #F2F2F2 1px;
+}
+
+.clear{clear:both}
+
+.chapter_head {
+    min-height: 36px;
+}
+
+.chapter_head {
+    padding: 20px 30px;
+    border-bottom: solid #F2F2F2 1px;
+}
+
+/* 编辑章节按钮 */
+.jb_btn{display:inline-block;box-shadow: 0 3px 12px 0 rgba(39,125,255,0.30);color: #FFFFFF;text-align:center;line-height:36px;border-radius: 20px;}
+.jb_btn_104{width:104px;height:36px;background:url(../image/jb_btn_104.png) no-repeat 0 0;}
+.jb_btn_104:hover{background-position:0 -48px;}
+.jb_btn_104:active{background-position:left -96px}
+.jb_btn_60 {width: 60px;height: 28px;line-height: 28px;background: url(../image/chapter_icons.png) no-repeat 0 -235px/150px auto;display: none;}
+.jb_btn_60:hover {background: url(../image/chapter_icons.png) no-repeat 0 -265px/150px auto;}
+.jb_btn_60:active {background: url(../image/chapter_icons.png) no-repeat 0 -295px/150px auto;}
+
+.fs14{font-size:14px;}
+.fr{float:right}
+.fl{float:left}
+a{text-decoration:none;}
+
+.catalog_edit {left: 626px;right: auto;}
+.catalog_edit {position: absolute;right: 264px;top: 50%;margin-top: -14px;}
+
+/* 左边导航栏 */
+.nav-content ul li{width:100%;height:54px;position: relative;}
+.nav-content ul li a{display:block;height:54px;line-height:54px;font-size: 14px;color: #474C59;}
+.nav-content ul li a:hover{background:#F0F6FF}
+.nav-content ul li a{padding-left:47px;}
+.nav-content ul li a i{display:inline-block;width:24px;height:24px;background:url(../image/nav_icon.png) no-repeat;background-size:1800%;vertical-align:middle;margin-right:6px;margin-top:-2px;}
+.nav-content ul li.curNav a{color: #3B90FF;background:#F0F6FF}
+.nav-content ul li.curNav a i.zj{background-position:-48px -24px;}
+
+/* 向下扩展 */
+.catalog_upDown {width: 12px;height: 12px;position: absolute;right: 30px;top: 50%;margin-top: -6px;cursor: pointer;}
+.catalog_upDown:before {display: block;font-size: 12px;color: #cad5e6;-webkit-transform: rotate(0deg);-moz-transform: rotate(0deg);-ms-transform: rotate(0deg);-o-transform: rotate(0deg);transform: rotate(0deg);-webkit-transition: all .2s linear;-moz-transition: all .2s linear;-ms-transition: all .2s linear;-o-transition: all .2s linear;transition: all .2s linear;}
+.catalog_upDown_active:before {-webkit-transform: rotate(180deg);-moz-transform: rotate(180deg);-ms-transform: rotate(180deg);-o-transform: rotate(180deg);transform: rotate(180deg);}
+.catalog_upDown:hover {opacity: .7;}
+[class^="icon-"], [class*=" icon-"] {font-family: 'Chapter' !important;speak: none;font-style: normal;font-weight: normal;font-variant: normal;text-transform: none;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
+.icon-up:before {content: "\e900";color: #3a8bff;}
+.icon-down:before {content: "\e902";color: #3a8bff;}

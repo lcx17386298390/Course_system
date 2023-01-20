@@ -25,4 +25,8 @@ public class ChapterService {
         return chapterMapper.getChapterByCourseNumberAndOwnerIdAndNum(courseNumber,owner_id,num);
     }
 
+    public void addChapter(String courseNumber,int chapterType,String title,Integer num,String fileName,Integer owner_id){
+        chapterMapper.addChapter(courseNumber,chapterType,title,num,fileName,owner_id);
+    }
+
 }

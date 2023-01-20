@@ -16,6 +16,9 @@ import myMes from "../components/MyMes.vue"
 import coursePage from "../components/CoursePage.vue"
 import ChapterPage from "../components/ChapterPage.vue"
 import CreateCourse from "../components/CreateCourse.vue"
+import EditCourse from "../components/EditCourse.vue"
+import ChapterEdit from "../components/ChapterEdit.vue"
+import NoTailHome from "../components/NoTailHome.vue"
 
 export default new VueRouter({
     mode: 'hash',
@@ -126,6 +129,22 @@ export default new VueRouter({
                 {
                     path: "/",
                     component: CreateCourse 
+                }
+            ]
+        },
+        {
+            path: '/editCourse/:courseNumber',
+            component: NoTailHome,
+            children: [
+                {
+                    path: "/",
+                    component: EditCourse,
+                    children: [
+                        {
+                            path:'chapter',
+                            component: ChapterEdit
+                        }
+                    ]
                 }
             ]
         }
