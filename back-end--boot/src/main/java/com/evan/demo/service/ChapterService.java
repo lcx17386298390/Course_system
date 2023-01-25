@@ -29,4 +29,15 @@ public class ChapterService {
         chapterMapper.addChapter(courseNumber,chapterType,title,num,fileName,owner_id);
     }
 
+    public void setChapterTitle(String title,String courseNumber,int chapterType,Integer num,Integer owner_id){
+        chapterMapper.setChapterTitle(title,courseNumber,chapterType,num,owner_id);
+    }
+
+    public void deleteChapter(String courseNumber,int chapterType,Integer num,Integer owner_id){
+        chapterMapper.deleteChapter(courseNumber,chapterType,num,owner_id);
+    }
+
+    public void fileSend(String fileName,String courseNumber,int chapterType,Integer num,Integer owner_id){
+        chapterMapper.fileSend(fileName,courseNumber,chapterType,num,owner_id);
+    }
 }

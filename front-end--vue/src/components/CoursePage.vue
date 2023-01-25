@@ -561,7 +561,8 @@
                     <dd>累计互动次数</dd>
                 </dl> -->
                 <div class="service_bnt">
-                    <a class="xsbntLiner" href="javascript:void(0)" onclick="msgtip()">{{ $t('user.coursePage.joinCourse') }}</a>
+                    <a class="xsbntLiner" id="joinCourseBtn" href="javascript:void(0)" @click="joinCourse()" style="display:block">{{ $t('user.coursePage.joinCourse') }}</a>
+                    <a class="xsbntLiner" id="withdrawalCourseBtn" href="javascript:void(0)" @click="withdrawalCourse()" style="display:none">退选课程</a>
                 </div>
             </div>
         </div>
@@ -1117,6 +1118,7 @@
 
 <script>
 import coursePageJs from "@/assets/style/js/coursePageVue.js"
+import axios from 'axios'
 export default {
     name: 'coursePage',
     data(){
@@ -1152,14 +1154,15 @@ export default {
         resetLang: function(){
             this.$i18n.locale=='en'?this.$i18n.locale='zh':this.$i18n.locale='en'
         },
-        pageInitialization: function(callback){
+        pageInitialization: async function(callback){
             // 数据初始化
-            coursePageJs.pageInitialization(this.that).then(course=>{
+            await coursePageJs.pageInitialization(this.that).then(course=>{
                 this.course = course[0]
                 this.courseComments = course[1]
                 this.courseChapters = course[2]
                 callback(course)
             })
+            this.isSelect()
         },
         viewReply: function(topic_replydiv){
             let replydiv = document.getElementById(topic_replydiv)
@@ -1177,6 +1180,40 @@ export default {
             })
             })
             coursePageJs.moduleBtnClick(this.that)
+            // setTimeout(()=>{this.isSelect()},20)
+        },
+        joinCourse: function(){
+            axios.get('/joinCourse?courseNumber='+this.course.data.courseNumber+'&userEmail='+this.myMes.data.email)
+                .then(res=>{
+                    console.log(res)
+                    this.pageInitializationStart()
+                }).catch(err=>{
+                    alert(err)
+                })
+        },
+        withdrawalCourse: function(){
+            axios.get('/withdrawalCourse?courseNumber='+this.course.data.courseNumber+'&userEmail='+this.myMes.data.email)
+                .then(res=>{
+                    console.log(res)
+                    this.pageInitializationStart()
+                }).catch(err=>{
+                    alert(err)
+                })
+        },
+        // 判断是否已经选此课
+        isSelect: function(){
+            axios.get('/isSelect?courseNumber='+this.course.data.courseNumber+'&userEmail='+this.myMes.data.email)
+                .then(res=>{
+                    if(res.data==true){
+                        document.getElementById('withdrawalCourseBtn').style.display='block'
+                        document.getElementById('joinCourseBtn').style.display='none'
+                    }else{
+                        document.getElementById('withdrawalCourseBtn').style.display='none'
+                        document.getElementById('joinCourseBtn').style.display='block'
+                    }
+                }).catch(err=>{
+                    alert(err)
+                })
         }
     },
     mounted(){

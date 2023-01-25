@@ -27,4 +27,12 @@ public class CourseService {
     public void addCourse(String courseNumber, String courseName, String teacherName, String teacherSchool, String imagePath, int state, int learnNumber, int commentsNumber, String teacherAccountNumber, String startDate, String endDate, Integer classHours, String courseIntroduction) {
         courseMapper.addCourse(courseNumber, courseName, teacherName, teacherSchool, imagePath, state, learnNumber, commentsNumber,teacherAccountNumber,startDate, endDate,classHours, courseIntroduction);
     }
+
+    public void addLearnNumber(String courseNumber){
+        courseMapper.addLearnNumber(courseNumber);
+    }
+
+    public void removeLearnNumber(String courseNumber){
+        courseMapper.removeLearnNumber(courseNumber);
+    }
 }

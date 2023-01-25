@@ -49,6 +49,9 @@ public class LoginController {
     @Autowired
     ChapterService chapterService;
 
+    @Autowired
+    CourseSelectionService courseSelectionService;
+
     Map<String,Object>codeMap = new HashMap<String,Object>(){{
         put("code","404");
     }};
@@ -321,5 +324,78 @@ public class LoginController {
         return "success";
     }
 
+    /*设置章节标题api*/
+    @ResponseBody
+    @PostMapping("/setChapterTitle")
+    public Object setChapterTitle(@RequestParam("titleVal")String titleVal,@RequestParam("courseNumber")String courseNumber,@RequestParam("num")Integer num,@RequestParam("owner_id")int owner_id){
+        chapterService.setChapterTitle(titleVal,courseNumber,1,num,owner_id);
+        return "success";
+    }
 
+    /*删除子章节api*/
+    @ResponseBody
+    @PostMapping("/deleteChapter")
+    public Object deleteChapter(@RequestParam("courseNumber")String courseNumber,@RequestParam("num")Integer num,@RequestParam("owner_id")int owner_id){
+        chapterService.deleteChapter(courseNumber,1,num,owner_id);
+        return "success";
+    }
+
+    /*删除子章节api*/
+    @ResponseBody
+    @PostMapping("/fileSend")
+    public Object fileSend(@RequestParam("file")MultipartFile file,@RequestParam("courseNumber")String courseNumber,@RequestParam("num")Integer num,@RequestParam("owner_id")int owner_id) throws IOException {
+        if (file==null|| file.isEmpty()){
+            return "上传失败，请选择文件";
+        }
+        String fileName;
+        /*定义上传路径*/
+        String filePath = "C:/Users/lcx17/Desktop/upFile/";
+        fileName = file.getOriginalFilename();
+        File dest = new File(filePath + fileName);
+        file.transferTo(dest);
+        chapterService.fileSend(fileName,courseNumber,1,num,owner_id);
+        return "success";
+    }
+
+    /*加入课程api*/
+    @ResponseBody
+    @GetMapping("/joinCourse")
+    public Object joinCourse(@RequestParam("courseNumber")String courseNubmer,@RequestParam("userEmail")String userEmail){
+        courseService.addLearnNumber(courseNubmer);
+        courseSelectionService.addSelectionByCourseNumberAndUser(courseNubmer,userEmail);
+        return "success";
+    }
+
+    /*得到学习的课程列表api*/
+    @ResponseBody
+    @GetMapping("/getLearnByUser")
+    public Object getLearnByUser(@RequestParam("userAccountNumber")String userAccountNumber){
+        List<CourseSelection>learns = courseSelectionService.getSelectionByUser(userAccountNumber);
+        List<Course>learnCourses = new ArrayList<>();
+        for(CourseSelection courseSelection : learns){
+            learnCourses.add(courseService.getCourseByCourseNumber(courseSelection.getCourseNumber()));
+        }
+        return learnCourses;
+    }
+
+    /*退出课程api*/
+    @ResponseBody
+    @GetMapping("/withdrawalCourse")
+    public Object withdrawalCourse(@RequestParam("courseNumber")String courseNubmer,@RequestParam("userEmail")String userEmail){
+        courseService.removeLearnNumber(courseNubmer);
+        courseSelectionService.removeSelectionByCourseNumberAndUser(courseNubmer,userEmail);
+        return "success";
+    }
+
+    /*判断此人是否已选次课*/
+    @ResponseBody
+    @GetMapping("/isSelect")
+    public Object isSelect(@RequestParam("courseNumber")String courseNumber,@RequestParam("userEmail")String userEmail){
+        CourseSelection courseSelection = courseSelectionService.getSelectionByUserAndCourseNumber(userEmail,courseNumber);
+        System.out.println(courseSelection);
+        if(courseSelection!=null){
+            return true;
+        }
+        return false;
+    }
 }

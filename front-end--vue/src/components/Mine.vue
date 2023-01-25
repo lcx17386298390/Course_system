@@ -23,9 +23,9 @@
                     <!-- <li class="pay crt-s" data-v-87842d9c="" id="collectionBtn" name="btnList">
                         <router-link to="myCollection" data-v-87842d9c="" >我的收藏</router-link>
                     </li> -->
-                    <li class="plr" data-v-87842d9c="" id="playRecordBtn" name="btnList">
+                    <!-- <li class="plr" data-v-87842d9c="" id="playRecordBtn" name="btnList">
                         <router-link to="myPlayRecord" data-v-87842d9c="" >{{$t('user.playbackRecord')}}</router-link>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div class="g-mn-b">

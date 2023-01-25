@@ -28,4 +28,28 @@ public interface ChapterMapper {
                         @Param("fileName") String fileName,
                         @Param("owner_id") Integer owner_id);
 
+    @Select("update chapter set title=#{title} where courseNumber=#{courseNumber} and chapterType=#{chapterType} and num=#{num} and owner_id=#{owner_id}")
+    void setChapterTitle(@Param("title") String title,
+                         @Param("courseNumber") String courseNumber,
+                         @Param("chapterType") Integer chapterType,
+                         @Param("num") Integer num,
+                         @Param("owner_id") Integer owner_id
+                         );
+
+    @Select("delete from chapter where courseNumber=#{courseNumber} and chapterType=#{chapterType} and num=#{num} and owner_id=#{owner_id}")
+    void deleteChapter(@Param("courseNumber") String courseNumber,
+                         @Param("chapterType") Integer chapterType,
+                         @Param("num") Integer num,
+                         @Param("owner_id") Integer owner_id
+                         );
+
+    @Select("update chapter set fileName=#{fileName} where courseNumber=#{courseNumber} and chapterType=#{chapterType} and num=#{num} and owner_id=#{owner_id}")
+    void fileSend(@Param("fileName") String fileName,
+                  @Param("courseNumber") String courseNumber,
+                  @Param("chapterType") Integer chapterType,
+                  @Param("num") Integer num,
+                  @Param("owner_id") Integer owner_id
+    );
+
+
 }

@@ -39,4 +39,12 @@ public interface CourseMapper {
                    @Param("endDate") String endDate,
                    @Param("classHours") Integer classHours,
                    @Param("courseIntroduction") String courseIntroduction);
+
+    /* 参加学习 */
+    @Select("update courses set learnNumber=learnNumber+1 where courseNumber=#{courseNumber}")
+    void addLearnNumber(@Param("courseNumber") String courseNumber);
+
+    /* 退出学习 */
+    @Select("update courses set learnNumber=learnNumber-1 where courseNumber=#{courseNumber}")
+    void removeLearnNumber(@Param("courseNumber") String courseNumber);
 }

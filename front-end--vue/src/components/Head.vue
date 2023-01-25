@@ -26,7 +26,7 @@
             <a href="#" id="logout" target="_top" @click="loginOut">{{ $t('user.logout') }}</a>
           </div>
         </div>
-        <div class="qSearch fr" style="backgroud-color:yellow">
+        <div class="qSearch fr" style="backgroud-color:yellow;display:none">
           <input type="text" name="text" value class="qSearch_input fl" :placeholder="this.$t('user.searchText')" id="searchWorld"
             autocomplete="off">
           <input type="button" name="button" value class="qSearch_btn" id="search">

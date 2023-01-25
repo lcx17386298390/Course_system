@@ -12,7 +12,7 @@
                 <div class="prev_main" id="qqqq">
                     <iframe height="492px" width="850px" style="padding-top:30px" id="iframe" frameborder="0"
                         scrolling="no" :src="chapterMes.data.fileName" allowfullscreen="true"
-                        webkitallowfullscreen="true" mozallowfullscreen="true" onload="clickImg()">
+                        webkitallowfullscreen="true" mozallowfullscreen="true">
                     </iframe>
                     <!-- <iframe height="492px" width="850px" style="padding-top:30px" id="iframe" frameborder="0"
                         scrolling="no" src="/video.mp4" allowfullscreen="true"

@@ -61,13 +61,13 @@ const mineJs = {
         let currentIndex = 0
         let btnList = document.getElementsByName("btnList")
         let myClassList = new Array()
-        let titleTextList = new Array(that.$t('user.myMes'),that.$t('user.createCourse'),that.$t('user.coursesLearned'),that.$t('user.playbackRecord'))
+        let titleTextList = new Array(that.$t('user.myMes'),that.$t('user.createCourse'),that.$t('user.coursesLearned'))
 
         myClassList[0] = "coupon "
         myClassList[1] = "course "
         myClassList[2] = "pay "
         // myClassList[3] = "plr "
-        myClassList[3] = "coupon "
+        // myClassList[3] = "coupon "
 
         for(let i=0;i<btnList.length;i++){
             btnList[i].setAttribute("id",i)

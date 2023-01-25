@@ -74,23 +74,22 @@
                         </div>
                         <!-- 第二级开始 -->
                         <div class="catalog_level" style="display:none;position:relative" :id="'subChapterDiv'+(index+1)">
-                            <ul v-for="(subValue,subIndex) in value.subChapter" :key="subIndex">
-                                <li>
+                            <ul>
+                                <li v-for="(subValue,subIndex) in value.subChapter" :key="subIndex">
                                     <div class="chapter_item">
                                         <div class="catalog_title">
-                                            <div class="catalog_name" onclick="toNew('232550283', '706700298', '71862440')">
-                                                <a title="标题一" target="_blank" class="clicktitle">
-                                                    <span class="catalog_sbar">{{ index+1 }}.{{ subIndex+1 }}</span> {{ subValue.title }} </a>
+                                            <div class="catalog_name">
+                                                <a :title="subValue.title" target="_blank" class="clicktitle" :href="'/#/chapterPage/'+that.$route.params.courseNumber+'/'+(index+1)+'.'+(subIndex+1)">
+                                                    <span class="catalog_sbar">{{ index+1 }}.{{ subIndex+1 }}</span> 
+                                                    <span>{{ subValue.title }}</span> </a>
                                             </div>
-                        
-                                            <a onclick="toEditOld('232550283', '706700298', '71862440')" target="_blank"
-                                                class="jb_btn jb_btn_60 fs14 catalog_edit">选择文件</a>
-                                            <!-- <a href="javascript:void(0);"
-                                                                        class="fs14 colorBlue catalog_setup popSetupBnt"
-                                                                        onclick="setOpenStatus('open', '706700298', '', '', '0', '0')">设置</a> -->
-                                            <!-- <div class="catalog_task">
-                                                                        <span class="catalog_points_yi">2</span>
-                                                                    </div> -->
+                                            <input type="file" :id="'upLoadFile'+(index+1)+'.'+(subIndex+1)" style="display:none" @change="fileSend((index+1)+'.'+(subIndex+1))">
+                                            <a @click="upLoadFile((index+1)+'.'+(subIndex+1))" target="_blank"
+                                                class="jb_btn jb_btn_60 fs14 catalog_edit">文件</a>
+                                            <a @click="setTitle((index+1)+'.'+(subIndex+1))" target="_blank"
+                                                class="jb_btn jb_btn_60 fs14 catalog_edit" style="left:700px">标题</a>
+                                            <a @click="deleteChapter((index+1)+'.'+(subIndex+1))" target="_blank"
+                                                class="jb_btn jb_btn_60 fs14 catalog_edit" style="left:550px">删除</a>
                                         </div>
                                         <div class="catalog_jindu catalog_tishi56">
                                             <div class="catalog_ressbar" data="706700298" style="cursor: pointer;">
@@ -117,14 +116,16 @@
 <script>
 import ChapterEditJs from '@/assets/style/js/chapterEditVue.js'
 import axios from 'axios'
-
 export default {
     data(){
         return{
             that: this,
             chaptersMes:{
                 data: []
-            }
+            },
+            oldHTML: '',    //旧的代码段
+            oldTitle: '',    //旧的标题
+            titleStatu: 0,  //1为激活
         }
     },
     methods:{
@@ -165,6 +166,100 @@ export default {
                 })
                 .catch(error=>{alert(error)})
         },
+        setSubChapterTitle: function(index){
+            let num = this.chaptersMes.data[index].subChapter.length+1
+            axios.post("/setSubChapterTitle?courseNumber="+this.$route.params.courseNumber+"&num="+num+"&owner_id="+(index+1))
+                .then(res=>{
+                    if(res.data=='success'){
+                        this.getChaptersMesStart()
+                    }
+                })
+                .catch(error=>{alert(error)})
+        },
+        setTitle: function(num){ 
+            if(this.titleStatu==1){
+                alert("请关闭当前标题操作")
+                return
+            }
+            this.titleStatu = 1
+            let number = num.split('.')
+            let div = document.getElementById('subChapterDiv'+number[0]).children[0].children[number[1]-1].children[0].children[0].children[0]
+            this.oldHTML = div.innerHTML
+            this.oldTitle = div.children[0].children[1].innerHTML
+            div.innerHTML = "<a class='clicktitle'><span class='catalog_sbar'>"+num+"</span><input type='text' onblur=blurFun(this,"+num+") /></a>"
+            // div.addEventListener("mouseout", function (event) {
+            //     div.innerHTML = this.oldHTML
+            // });
+        },
+        blurFun: function(div,num){
+            let titleValue = div.value
+            num = String(num)
+            let number = num.split('.')
+            if(titleValue==null||titleValue==''||titleValue==this.oldTitle){
+                // 无操作,未修改成功
+                div.parentNode.parentNode.innerHTML = this.oldHTML
+                this.titleStatu = 0
+                return
+            } else {  //修改标题成功，发送请求
+                axios.post('/setChapterTitle?titleVal='+titleValue+"&courseNumber="+this.that.$route.params.courseNumber+"&num="+number[1]+"&owner_id="+number[0])
+                    .then((res)=>{
+                        console.log(res)
+                    }).catch(error=>{
+                        alert(error)
+                    })
+                setTimeout(() => {
+                    console.log(this.oldTitle+"+"+titleValue)
+                    this.oldHTML = this.oldHTML.replaceAll(this.oldTitle,titleValue)
+                    console.log(this.oldHTML)
+                    div.parentNode.parentNode.innerHTML = this.oldHTML
+                    this.titleStatu = 0
+                }, 500)
+            }
+            // div.parentNode.innerHTML = titleValue
+        },
+        deleteChapter: function (num) {
+            let number = num.split('.')
+            let div = document.getElementById('subChapterDiv'+number[0]).children[0].children[number[1]-1]
+            axios.post('/deleteChapter?courseNumber=' + this.that.$route.params.courseNumber + "&num=" + number[1] + "&owner_id=" + number[0])
+                .then((res) => {
+                    console.log(res)
+                }).catch(error => {
+                    alert(error)
+                })
+            div.remove()
+        },
+        upLoadFile: function(num){
+            let number = num.split('.')
+            let fileDiv = document.getElementById('upLoadFile'+num)
+            fileDiv.click()
+        },
+        fileSend: function(num){
+            let number = num.split('.')
+
+            let file = document.getElementById('upLoadFile'+num).files[0]
+            const formData = new FormData();
+            formData.append("file",file);
+            formData.append("courseNumber",this.$route.params.courseNumber);
+            formData.append("num",number[1]);
+            formData.append("owner_id",number[0]);
+            axios.post('fileSend',formData,{
+                'Content-type' : 'multipart/form-data'
+            }).then(res=>{
+                var result = res.data
+                if(res.data=='success'){
+                    alert("文件上传完成")
+                }
+            },err=>{
+                alert(err)
+            })
+            alert("文件正在上传，请稍等（点击确认上传成功有提示）...")
+        },
+        // function: myAlert(){
+
+        // }
+    },
+    created(){
+        window.blurFun = this.blurFun
     },
     mounted(){
         this.getChaptersMesStart()
