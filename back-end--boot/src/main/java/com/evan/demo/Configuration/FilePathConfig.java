@@ -8,6 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class FilePathConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**").addResourceLocations("file:C:/Users/lcx17/Desktop/upFile/");
+        registry.addResourceHandler("/**").addResourceLocations("file:/home/admin/Course_System/upFile/");
     }
 }

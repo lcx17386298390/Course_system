@@ -10,12 +10,12 @@ import java.sql.Timestamp;
 @Data
 public class Comment {
     private String id;
-    private String sub_id;
+    private String subId;
     private Integer type;
-    private String owner_id;
-    private String from_id;
-    private Integer like_num;
+    private String ownerId;
+    private String fromId;
+    private Integer likeNum;
     private String content;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")		//转化时间戳
-    private Timestamp create_time;
+    private Timestamp createTime;
 }

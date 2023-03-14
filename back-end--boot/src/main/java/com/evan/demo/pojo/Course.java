@@ -22,20 +22,6 @@ public class Course {
 
     private Integer classHours;
     private String courseIntroduction;
-
-    public Course(String courseNumber, String courseName, String teacherName, String teacherSchool, String imagePath, int state, int learnNumber, int commentsNumber, String teacherAccountNumber, Date startDate, Date endDate, Integer classHours, String courseIntroduction) {
-        this.courseNumber = courseNumber;
-        this.courseName = courseName;
-        this.teacherName = teacherName;
-        this.teacherSchool = teacherSchool;
-        this.imagePath = imagePath;
-        this.state = state;
-        this.learnNumber = learnNumber;
-        this.commentsNumber = commentsNumber;
-        this.teacherAccountNumber = teacherAccountNumber;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.classHours = classHours;
-        this.courseIntroduction = courseIntroduction;
-    }
+    private Integer memberTab;
+    private Integer classesTab;
 }

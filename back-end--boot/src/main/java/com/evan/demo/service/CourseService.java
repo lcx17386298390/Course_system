@@ -24,8 +24,8 @@ public class CourseService {
         return courseMapper.getCourseByCourseNumber(courseNumber);
     }
 
-    public void addCourse(String courseNumber, String courseName, String teacherName, String teacherSchool, String imagePath, int state, int learnNumber, int commentsNumber, String teacherAccountNumber, String startDate, String endDate, Integer classHours, String courseIntroduction) {
-        courseMapper.addCourse(courseNumber, courseName, teacherName, teacherSchool, imagePath, state, learnNumber, commentsNumber,teacherAccountNumber,startDate, endDate,classHours, courseIntroduction);
+    public void addCourse(String courseNumber, String courseName, String teacherName, String teacherSchool, String imagePath, int state, int learnNumber, int commentsNumber, String teacherAccountNumber, String startDate, String endDate, Integer classHours, Integer memberTab, Integer classesTab, String courseIntroduction) {
+        courseMapper.addCourse(courseNumber, courseName, teacherName, teacherSchool, imagePath, state, learnNumber, commentsNumber,teacherAccountNumber,startDate, endDate,classHours,memberTab,classesTab, courseIntroduction);
     }
 
     public void addLearnNumber(String courseNumber){
@@ -34,5 +34,13 @@ public class CourseService {
 
     public void removeLearnNumber(String courseNumber){
         courseMapper.removeLearnNumber(courseNumber);
+    }
+
+    public void addCommentNumber(String courseNumber){
+        courseMapper.addCommentNumber(courseNumber);
+    }
+
+    public Integer getCourseCount(){
+        return courseMapper.getCourseCount();
     }
 }

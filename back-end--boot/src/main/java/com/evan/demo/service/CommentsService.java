@@ -18,8 +18,8 @@ public class CommentsService {
         return commentsMapper.getCommentsByIdAndType(id,type);
     }
 
-    public List<Comment> getCommentsByIdAndOwner_id(String id, String owner_id){
-        return commentsMapper.getCommentsByIdAndOwner_id(id,owner_id);
+    public List<Comment> getCommentsByIdAndOwner_id(String id, String ownerId){
+        return commentsMapper.getCommentsByIdAndOwner_id(id,ownerId);
     }
 
     public List<Comment> getCommentsById(String id){

@@ -15,21 +15,21 @@ public interface CommentsMapper {
     List<Comment> getCommentsByIdAndType(@Param("id") String id,@Param("type") int type);
 
     /*通过视频id（主键）和视频回复目标主题id 获取评论---得到次评论（回复的评论）*/
-    @Select("select * from comments_info where id=#{id} and owner_id=#{owner_id}")
-    List<Comment> getCommentsByIdAndOwner_id(@Param("id") String id,@Param("owner_id") String owner_id);
+    @Select("select * from comments_info where id=#{id} and ownerId=#{ownerId}")
+    List<Comment> getCommentsByIdAndOwner_id(@Param("id") String id,@Param("ownerId") String ownerId);
 
     @Select("select * from comments_info where id=#{id}")
     List<Comment> getCommentById(@Param("id") String id);
 
-    @Select("insert into comments_info(id,sub_id,type,owner_id,from_id,like_num,content,create_time)" +
-            "values (#{id},#{sub_id},#{type},#{owner_id},#{from_id},#{like_num},#{content},#{create_time})")
+    @Select("insert into comments_info(id,subId,type,ownerId,fromId,likeNum,content,createTime)" +
+            "values (#{id},#{subId},#{type},#{ownerId},#{fromId},#{likeNum},#{content},#{createTime})")
     void addCommend(@Param("id") String id,
-                    @Param("sub_id") String sub_id,
+                    @Param("subId") String subId,
                     @Param("type") Integer type,
-                    @Param("owner_id") String owner_id,
-                    @Param("from_id") String from_id,
-                    @Param("like_num") Integer like_num,
+                    @Param("ownerId") String ownerId,
+                    @Param("fromId") String fromId,
+                    @Param("likeNum") Integer likeNum,
                     @Param("content") String content,
-                    @Param("create_time") String create_time);
+                    @Param("createTime") String createTime);
 
 }
