@@ -5,7 +5,7 @@
 			<div id="full-screen-slider">
 				<ul id="slides">
 					<!-- A计划 -->
-					<li v-for="(value) in successMes.data.slideImageList" :key="value.id" :style="{background: 'url('+value.ImageName+')'}" style="background: center top no-repeat; z-index: 9; transition:all 2s; visibility: visible; background-size: auto 100%; opacity:1;">
+					<li v-for="(value) in successMes.data.slideImageList" :key="value.id" :style="'background: url('+value.ImageName+') center top no-repeat; z-index: 9; transition:all 2s; visibility: visible; background-size: auto 100%; opacity:1;'">
 						<a href="#" target="_blank"></a>
 					</li>
 
@@ -201,7 +201,7 @@
 					<li>文史类</li>
 					<li>理工类</li> -->
 				</ul>
-				<a class="qMore fr" href="https://www.xueyinonline.com/mooc/courselist">更多 &gt;</a>
+				<a class="qMore fr" href="/#/courseList">更多 &gt;</a>
 			</div>
 			<div class="qHotSel_ul" id="picCon">
 				<ul class="clearAfter">
@@ -209,7 +209,7 @@
 					<li v-for="(value,index) in successMes.data.LearnSortCourse" :key="index">
 						<div class="qExpress_padd qNima">
 							<div class="qExpress_pic"><a :href="'/#/coursePage/'+value.courseNumber" target="_brank"><img
-									:src="'/images/'+value.imagePath"></a>
+									:src="'/api/images/'+value.imagePath"></a>
 								<span></span>
 							</div>
 							<dl class="qExpress_dl">
@@ -217,8 +217,8 @@
 								<dd>{{value.teacherSchool}} | {{value.teacherName}}</dd>
 							</dl>
 							<div class="qExpress_state">
-								<span class="colorBlue fl">{{value.state==1 ? '进行中':"已结束"}}</span>
-								<span class="colorGray fr">{{value.learnNumber}}人已学</span>
+								<span class="colorBlue fl">{{value.state==1 ? $t('user.coursePage.inProgress') : $t('user.coursePage.haveEnd')}}</span>
+								<span class="colorGray fr">{{value.learnNumber}}{{ $t('user.coursePage.learnMes') }}</span>
 							</div>
 						</div>
 					</li>
@@ -226,7 +226,7 @@
 					<li v-for="(value,index) in successMes.data.CommentSortCourse" :key="index">
 						<div class="qExpress_padd qNima">
 							<div class="qExpress_pic"><a :href="'/#/coursePage/'+value.courseNumber" target="_brank"><img
-									:src="'/images/'+value.imagePath"></a>
+									:src="'/api/images/'+value.imagePath"></a>
 								<span></span>
 							</div>
 							<dl class="qExpress_dl">
@@ -234,8 +234,8 @@
 								<dd>{{value.teacherSchool}} | {{value.teacherName}}</dd>
 							</dl>
 							<div class="qExpress_state">
-								<span class="colorBlue fl">{{value.state==1 ? '进行中':"已结束"}}</span>
-								<span class="colorGray fr">{{value.learnNumber}}人已学</span>
+								<span class="colorBlue fl">{{value.state==1 ? $t('user.coursePage.inProgress') : $t('user.coursePage.haveEnd')}}</span>
+								<span class="colorGray fr">{{value.learnNumber}}{{ $t('user.coursePage.learnMes') }}</span>
 							</div>
 						</div>
 					</li>

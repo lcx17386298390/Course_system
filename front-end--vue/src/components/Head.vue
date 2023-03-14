@@ -21,7 +21,7 @@
           </div>
           <div class="qLogin_after" style="display:none">
             <router-link to="/mine/myMes" id="tospace">
-              <img :src="loginSuccessMes.data.headImage">
+              <img :src="'/api/images/'+loginSuccessMes.data.headImage">
             </router-link>
             <a href="#" id="logout" target="_top" @click="loginOut">{{ $t('user.logout') }}</a>
           </div>

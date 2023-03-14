@@ -93,9 +93,9 @@ export default {
     name: 'loginTest',
     data(){
         return{
-            username:"453434",
-            userpaw:"453453",
-            pasType:"password",
+            username:"",
+            userpaw:"",
+            pasType:"",
 
         }
     },

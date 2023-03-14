@@ -6,8 +6,8 @@
         <input type="hidden" id="t" value="0">
         <input type="hidden" id="jinkeType" value="0">
         <div class="crumbs">
-            <span class="colorGray33">当前位置：</span> <a href="/">首页</a> &gt; <a
-                href="/#/courseList">课程</a> &gt; <a
+            <span class="colorGray33">{{ $t('user.coursePage.currentCourse') }}：</span> <a href="/">{{ $t('user.coursePage.homePage') }}</a> &gt; <a
+                href="/#/courseList">{{ $t('user.course') }}</a> &gt; <a
                 :href="'/#/coursePage/'+course.data.courseNumber">{{ course.data.courseName }}</a>
         </div>
         <div class="mgCard">
@@ -25,7 +25,7 @@
                                         src="https://s1.ananas.chaoxing.com/video/d8/a4/a5/a330586cb792a4dc454f6e958f4bc7ca/sd.mp4?at_=1672796629589&amp;ak_=db459bf594cf77e2f2ba9423ce765877&amp;ad_=19b0c68eb73a6f84e9d89ab026f326be"></video>
                                     <div class="vjs-poster" tabindex="-1" aria-disabled="false"
                                         :style="'background-image:url(http://localhost:8443/'+course.data.imagePath+')'">
-                                        <img :src="course.data.imagePath">
+                                        <img :src="'/api/images/'+course.data.imagePath">
                                     </div>
                                     <!-- 视频播放 -->
                                     <!-- <div class="vjs-text-track-display" aria-live="off" aria-atomic="true"></div>
@@ -513,7 +513,7 @@
                         <dt>
                             <h2 class="mgCard_h2" title="装饰工程计量与计价">{{ course.data.courseName }}</h2>
                         </dt>
-                        <dd class="teacher">主讲教师：{{ course.data.teacherName }} {职位} /{{ course.data.teacherSchool }}</dd>
+                        <dd class="teacher">{{$t('user.coursePage.lecturer')}}：{{ course.data.teacherName }}/{{ course.data.teacherSchool }}</dd>
     
                         <!-- <dd>期次：
                             <span class="mgCard_dijiqi">
@@ -531,18 +531,19 @@
                             </span>
                         </dd> -->
                         <!-- <iframe src="/video.mp4" width="100%" height="100%" border="0"></iframe> -->
-                        <dd>起止日期：{{course.data.startDate}}至{{ course.data.endDate }}</dd>
-                        <dd>教学进度：
+                        <dd>{{$t('user.coursePage.startAndEndDate')}}：{{course.data.startDate}} - {{ course.data.endDate }}</dd>
+                        <dd>{{$t('user.coursePage.teachinProgress')}}：
                             <span class="mgCard_state">
                                 <!-- <a>预报名</a> -->
-                                <a class="current">进行中</a>
-                                <a>已结束</a>
+                                <a class="current">{{$t('user.coursePage.teachinProgress')}}</a>
+                                <a>{{$t('user.coursePage.teachinProgress')}}</a>
                             </span>
                         </dd>
-                        <dd>学时：{{ course.data.classHours }}学时</dd>
+                        <dd>{{$t('user.coursePage.classHours')}}：{{ course.data.classHours }}{{$t('user.coursePage.classHours')}}</dd>
+                        <dd style="color:firebrick">{{$t('user.coursePage.coursCategory')}}：{{ course.data.memberTab==0?this.$t('user.coursePage.freeCourse'):this.$t('user.coursePage.memberCourse')}}</dd>
                     </dl>
                     <div class="kechengIntr">
-                        <div class="kechengIntr_con">课程简介： {{ course.data.courseIntroduction}}</div>
+                        <div class="kechengIntr_con">{{$t('user.coursePage.courseIntroduction')}}： {{ course.data.courseIntroduction}}</div>
                         <a class="moreIntr fr" href="https://xueyinonline.com/detail/228416117#"></a>
                     </div>
                 </div>
@@ -554,7 +555,7 @@
                 </dl> -->
                 <dl class="service_dl fl">
                     <dt class="colorRed" id="_chooseCourseCount">{{ course.data.learnNumber }}</dt>
-                    <dd>累计选课人数</dd>
+                    <dd>{{$t('user.coursePage.totalNumberOfCoursesSelected')}}</dd>
                 </dl>
                 <!-- <dl class="service_dl fl">
                     <dt class="colorYellow" id="_bbsAllCount">6747</dt>
@@ -562,7 +563,7 @@
                 </dl> -->
                 <div class="service_bnt">
                     <a class="xsbntLiner" id="joinCourseBtn" href="javascript:void(0)" @click="joinCourse()" style="display:block">{{ $t('user.coursePage.joinCourse') }}</a>
-                    <a class="xsbntLiner" id="withdrawalCourseBtn" href="javascript:void(0)" @click="withdrawalCourse()" style="display:none">退选课程</a>
+                    <a class="xsbntLiner" id="withdrawalCourseBtn" href="javascript:void(0)" @click="withdrawalCourse()" style="display:none">{{ $t('user.coursePage.exitCourse') }}</a>
                 </div>
             </div>
         </div>
@@ -901,12 +902,15 @@
                 <div class="mkCata" style="display: none;" name="displayModuel">
                     <div class="mkCata">
                         <div class="mkCata_item" v-for="(value,index) in courseChapters.data" :key="index">
-                            <h2 class="mkCata_name">单元{{ index+1 }}</h2>
+                            <h2 class="mkCata_name">{{ $t('user.editCourse.unit')+''+(index+1) }}</h2>
                             <ul class="mkCata_list" v-for="(subValue,subIndex) in value.subChapter" :key="subIndex">
                                 <li class="tryingRead">
                                     <span class="mkCata_ico"></span>
-                                    <a :href="'/#/chapterPage/'+course.data.courseNumber+'/'+(index+1)+'.'+(subIndex+1)"
-                                        target="_blank">
+                                    <!-- <a :href="'/#/chapterPage/'+course.data.courseNumber+'/'+(index+1)+'.'+(subIndex+1)">
+                                        {{ index+1 }}.{{ subIndex+1 }}
+                                        {{ subValue.title }}
+                                    </a> -->
+                                    <a href="javascript:void(0)" @click="chapterContent('/chapterPage/'+course.data.courseNumber+'/'+(index+1)+'.'+(subIndex+1))">
                                         {{ index+1 }}.{{ subIndex+1 }}
                                         {{ subValue.title }}
                                     </a>
@@ -926,35 +930,35 @@
                         <div class="mkpt_form">
                             <textarea class="mkpt_area fl" :placeholder="this.$t('user.coursePage.curriculumEvaluation')" id="askTopic"></textarea>
                             <input type="button" name="button" :value="this.$t('user.coursePage.askQuestions')" class="mkpt_bnt bgBlue fr"
-                                @click="replyTopic(that.$route.params.courseNumber,that,0,myMes.data.email)">
+                                @click="replyTopic(that.$route.params.courseNumber,that,0,myMes.data.userAccountNumber)">
                         </div>
                     </div>
                     <!-- 评论模块 -->
                     <div class="mkpt_con">
                         <ul class="mkpt_list" id="topicAll">
                             <li v-for="(value,index) in courseComments.data" :key="index" class="mkpt_row">
-                                <img src="">
+                                <img :src="'/api/images/'+value.mainCommentUserMes.imagePath">
                                 <!-- <img src="./装饰工程计量与计价_files/a56626a15a1c2cc92d0b0972e3d086ba"> -->
                                 <div class="mkpt_text">
                                     <div class="mkpt_right fr">
                                         <a class="kc_myHuida" href="javascript:"
-                                            @click="viewReply('topic_replydiv'+value.mainComment.sub_id)">{{ $t('user.coursePage.wantAnswer') }}v</a>
+                                            @click="viewReply('topic_replydiv'+value.mainComment.subId)">{{ $t('user.coursePage.wantAnswer') }}</a>
                                         <!-- <span class="kc_myZan" href="javascript:void(0)"
                                             onclick="parseOrCancel(&#39;445252756&#39;,1)"
                                             id="isPraise_445252756">3</span> -->
                                     </div>
                                     <div class="mkpt_student">
-                                        <span class="spanName">{{ value.mainComment.from_id }}</span>
-                                        <span class="spanTime">{{ value.mainComment.create_time }}</span>
+                                        <span class="spanName">{{ value.mainCommentUserMes.email }}</span>
+                                        <span class="spanTime">{{ value.mainComment.createTime }}</span>
                                     </div>
                                     <!-- 提问 -->
                                     <div class="mkpt_ask">
-                                        <h3 class="mkpt_ask_name">提问： {{ value.mainComment.content }}</h3>
+                                        <h3 class="mkpt_ask_name">{{$t('user.editCourse.askQuestions')+'：'+value.mainComment.content }}</h3>
                                     </div>
                                     <div class="mkpt_answer" v-if="value.subComment.length!=0">
                                         <dl class="mkAnswer_box" v-for="(subValue,subIndex) in value.subComment" :key="subIndex">
                                             <dt>
-                                                <span class="colorBlue fontWeight">{{ subValue.from_id }}：</span>
+                                                <span class="colorBlue fontWeight">{{ value.subCommentUserMes[subIndex].email }}：</span>
                                                 {{ subValue.content }}
                                             </dt>
                                         </dl>
@@ -963,48 +967,17 @@
                                         </a> -->
                                     </div>
 
-                                    <div class="mkpt_huida" :id="'topic_replydiv'+value.mainComment.sub_id" style="display:none;">
+                                    <div class="mkpt_huida" :id="'topic_replydiv'+value.mainComment.subId" style="display:none;">
                                         <div class="mkpt_form">
                                             <textarea class="mkpt_area fl" placeholder="写下您的回答..."
-                                                :id="'replyContents_'+value.mainComment.sub_id"></textarea>
+                                                :id="'replyContents_'+value.mainComment.subId"></textarea>
                                             <input type="button" name="button" value="回复" class="mkpt_bnt bgBlue fr"
-                                                @click="replyTopic(value.mainComment.sub_id,that,1,myMes.data.email)">
+                                                @click="replyTopic(value.mainComment.subId,that,1,myMes.data.userAccountNumber)">
                                         </div>
                                     </div>
 
                                 </div>
                             </li>
-                            <!-- <li>
-                                <img src="">
-                                <div class="mkpt_text">
-                                    <div class="mkpt_right fr">
-                                        <a class="kc_myHuida" href="javascript:"
-                                            onclick="viewReply(&#39;434843234&#39;)">我要回答</a>
-                                        <span class="kc_myZan" href="javascript:void(0)"
-                                            onclick="parseOrCancel(&#39;434843234&#39;,1)"
-                                            id="isPraise_434843234">0</span>
-                                    </div>
-                                    <div class="mkpt_student">
-                                        <span class="spanName">侯娟娟</span>
-                                        <span class="spanTime">2022-11-03 12:46</span>
-                                    </div>
-
-                                    <div class="mkpt_ask">
-                                        <h3 class="mkpt_ask_name">提问： 装饰工程的分类和内容</h3>
-                                        <div class="mkpt_ask_text">按装修的部位分，装饰工程可分为？</div>
-                                    </div>
-
-                                    <div class="mkpt_huida" id="topic_replydiv434843234" style="display:none;">
-                                        <div class="mkpt_form">
-                                            <textarea class="mkpt_area fl" placeholder="写下您的回答..."
-                                                id="replyContents_434843234"></textarea>
-                                            <input type="button" name="button" value="回复" class="mkpt_bnt bgBlue fr"
-                                                onclick="replyTopic(&#39;434843234&#39;,&#39;63026763&#39;)">
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </li> -->
 
                             <p align="center">
                                 <!-- <button onclick="newGetMoreTopic(&#39;228416117&#39;,&#39;63026763&#39;,&#39;69a1d2e37b888ff0eebb7c54c6cb6cf7&#39;)"
@@ -1028,88 +1001,15 @@
                         <span class="big_name">{{ $t('user.coursePage.coursGrading') }}</span><span class="big_num"> 0.0</span>
                         <!-- 评分星星 -->
                         <!-- <span class="big_xing ss0"></span> -->
-                        <span class="big_text">共0人评价</span>
-                        <div style="width:100px;display: inline-block;">nihao </div>
+                        <span class="big_text">{{$t('user.coursePage.commentMes1')}}0{{$t('user.coursePage.commentMes2')}}</span>
                     </div>
-                    <div style="width:100px;display: inline-block;">nihao </div>
                     <div class="mkEval_con">
                         <ul class="mkEval_ul" id="mkEvaluateUl">
                         </ul>
                     </div>
                 </div>
-                <!-- <div class="mkRset" style="display: none;">
-                    <dl class="mkRset_row">
-                        <dt>1.我该如何学习这门课程？</dt>
-                        <dd>（1）首先您要注册一个学银在线的账号。</dd>
-                        <dd>（2）您需要有一定的上网条件，能够流畅的观看教学视频。在观看的过程中，您可以选择在PC端登陆我们的网页， 也可以选择下载我们的app学习通，通过手机客户端来学习</dd>
-                        <dd>（3）您一旦报名选择了课程，我们的课程主讲老师或课程团队会通过通知的形式给您发送课程有关的消息，同时会抄送您的邮箱，请您及时查收。</dd>
-                    </dl>
-                    <dl class="mkRset_row">
-                        <dt>2.我在学习过程中遇到问题了，怎么办？</dt>
-                        <dd>您可以通过以下几种方式获取帮助：</dd>
-                        <dd>（1）在课程群聊中发布求助信息，说不定和你一起学习这门课的小伙伴就能够解决你的问题呢；</dd>
-                        <dd>（2）在课程讨论区留言，课程团队看到后将会及时回复。</dd>
-                        <dd>（3）联系我们的客服，或者随时给我们发邮件，邮箱地址：xueyinkf@chaoxing.com</dd>
-                    </dl>
-                    <dl class="mkRset_row">
-                        <dt>3.我是新手，能否给我一些学习建议？</dt>
-                        <dd>
-                            （1）我们的课程采用MOOC的方式授课，因此您可以自由安排您的学习时间、学习地点。但我们仍旧希望您每周能都有固定的时间持续进行本课程的学习，根据人的记忆曲线显示这种规律的学习方式能够最大限度的提升您的学习质量。
-                        </dd>
-                        <dd>（2）学习的过程比较容易，为了检验您的学习成果，我们的课程团队会在课程章节结束后布置测验或作业，希望您尽可能的按时独立完成。如果有没有掌握的知识点，您可以继续回看复习课程。</dd>
-                        <dd>（3）希望您能够积极参与课程的讨论，与各位学习者一起煮酒论英雄。在讨论的过程中，不光可以对课程所学内容温习内化，还能互相碰撞出思想的火花，相信您一定会有额外的收获。</dd>
-                    </dl>
-                </div> -->
             </div>
         </div>
-
-        <!-- <div class="kcRecom">
-            <h2 class="kcRecom_h2">课程推荐</h2>
-            <div class="kcRecom_con">
-                <ul class="kcRecom_ul clearAfter">
-                    <li>
-                        <div class="kcRecom_padd qNima">
-                            <div class="kcRecom_pic"><a href="https://xueyinonline.com/detail/226770841">
-                                    src="./装饰工程计量与计价_files/0eb9d1b438d16b150dd09e46231ede16.png"></a></div>
-                            <dl class="kcRecom_dl">
-                                <dt><a href="https://xueyinonline.com/detail/226770841">建筑信息模型（BIM)</a></dt>
-                                <dd>湖南交通职业技术学院 | 舒菁英</dd>
-                            </dl>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="kcRecom_padd qNima">
-                            <div class="kcRecom_pic"><a href="https://xueyinonline.com/detail/227068601">
-                                        src="./装饰工程计量与计价_files/efeb94865e514bd3da047e30f5483cf2.jpg"></a></div>
-                            <dl class="kcRecom_dl">
-                                <dt><a href="https://xueyinonline.com/detail/227068601">公路工程施工组织与管理</a></dt>
-                                <dd>哈尔滨铁道职业技术学院 | 麦爽</dd>
-                            </dl>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="kcRecom_padd qNima">
-                            <div class="kcRecom_pic"><a href="https://xueyinonline.com/detail/227072345">
-                                        src="./装饰工程计量与计价_files/f3032cfa1e40064f1649bc45bb77ba83.jpg"></a></div>
-                            <dl class="kcRecom_dl">
-                                <dt><a href="https://xueyinonline.com/detail/227072345">建筑材料</a></dt>
-                                <dd>山西经贸职业学院 | 闫申</dd>
-                            </dl>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="kcRecom_padd qNima">
-                            <div class="kcRecom_pic"><a href="https://xueyinonline.com/detail/227070724">
-                                        src="./装饰工程计量与计价_files/e6b2dd721328ac084ba1135405e19ff2.png"></a></div>
-                            <dl class="kcRecom_dl">
-                                <dt><a href="https://xueyinonline.com/detail/227070724">《平法识图与钢筋算量》</a></dt>
-                                <dd>长江工程职业技术学院 | 郑睿</dd>
-                            </dl>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div> -->
         <div class="temp" style="display: block">
         </div>
     </div>
@@ -1183,7 +1083,18 @@ export default {
             // setTimeout(()=>{this.isSelect()},20)
         },
         joinCourse: function(){
-            axios.get('/joinCourse?courseNumber='+this.course.data.courseNumber+'&userEmail='+this.myMes.data.email)
+            if(this.myMes.data.email==null){
+                alert("请先登录")
+                 return
+            }
+            if(this.course.data.memberTab==1){
+                // 会员课程
+                if(this.myMes.data.memberTab==0){
+                    alert('此课程为会员课程，您还不是会员')
+                    return
+                }
+            }
+            axios.get('/joinCourse?courseNumber='+this.course.data.courseNumber+'&userEmail='+this.myMes.data.userAccountNumber)
                 .then(res=>{
                     console.log(res)
                     this.pageInitializationStart()
@@ -1192,7 +1103,7 @@ export default {
                 })
         },
         withdrawalCourse: function(){
-            axios.get('/withdrawalCourse?courseNumber='+this.course.data.courseNumber+'&userEmail='+this.myMes.data.email)
+            axios.get('/withdrawalCourse?courseNumber='+this.course.data.courseNumber+'&userEmail='+this.myMes.data.userAccountNumber)
                 .then(res=>{
                     console.log(res)
                     this.pageInitializationStart()
@@ -1202,7 +1113,18 @@ export default {
         },
         // 判断是否已经选此课
         isSelect: function(){
-            axios.get('/isSelect?courseNumber='+this.course.data.courseNumber+'&userEmail='+this.myMes.data.email)
+            if(this.myMes.data.email==null){
+                alert("请先登录")
+                 return
+            }
+            if(this.course.data.memberTab==1){
+                // 会员课程
+                if(this.myMes.data.memberTab==0){
+                    alert('此课程为会员课程，您还不是会员')
+                    return
+                }
+            }
+            axios.get('/isSelect?courseNumber='+this.course.data.courseNumber+'&userEmail='+this.myMes.data.userAccountNumber)
                 .then(res=>{
                     if(res.data==true){
                         document.getElementById('withdrawalCourseBtn').style.display='block'
@@ -1213,6 +1135,27 @@ export default {
                     }
                 }).catch(err=>{
                     alert(err)
+                })
+        },
+        chapterContent: function(chapterPath){
+            if(this.myMes.data.email==null){
+                alert("请先登录")
+                 return
+            }
+            axios.get('/isSelect?courseNumber='+this.course.data.courseNumber+'&userEmail='+this.myMes.data.userAccountNumber)
+                .then(res=>{
+                    if (res.data == true) {
+                        let routeUrl = this.$router.resolve({
+                            path: chapterPath,
+                            // query: {
+                            //     companyName: '课件'
+                            // }
+                        })
+                        // this.$router.push(chapterPath)
+                        window.open(routeUrl.href,'_blank')
+                    }else{
+                        alert("请先加入课程后观看章节内容")
+                    }
                 })
         }
     },

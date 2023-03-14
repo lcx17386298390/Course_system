@@ -6,7 +6,7 @@
                 <div class="chapter_head clear">
                     <a href="javascript:;" class="jb_btn jb_btn_104 fl fs14 chapter_editorial"
                         @click="addMainChapter()">
-                        <i class="chapter_PlusIcon icon-edit"></i>添加主章节</a>
+                        <i class="chapter_PlusIcon icon-edit"></i>{{ $t('user.editCourse.addSection') }}</a>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
                                 <div class="catalog_num fl"><span><i><em style="font-style:normal;">{{ index+1 }}</em></i></span>
                                 </div>
                                 <div class="catalog_name">
-                                    <span :title="'单元'+(index+1)"> 单元{{ index+1 }} </span>
+                                    <span :title="$t('user.editCourse.unit')+(index+1)"> {{ $t('user.editCourse.unit') }}{{ index+1 }} </span>
                                 </div>
                                 <!-- <span class="catalog_upDown icon-down"></span> -->
                                 
@@ -85,11 +85,11 @@
                                             </div>
                                             <input type="file" :id="'upLoadFile'+(index+1)+'.'+(subIndex+1)" style="display:none" @change="fileSend((index+1)+'.'+(subIndex+1))">
                                             <a @click="upLoadFile((index+1)+'.'+(subIndex+1))" target="_blank"
-                                                class="jb_btn jb_btn_60 fs14 catalog_edit">文件</a>
+                                                class="jb_btn jb_btn_60 fs14 catalog_edit">{{ $t('user.editCourse.file') }}</a>
                                             <a @click="setTitle((index+1)+'.'+(subIndex+1))" target="_blank"
-                                                class="jb_btn jb_btn_60 fs14 catalog_edit" style="left:700px">标题</a>
+                                                class="jb_btn jb_btn_60 fs14 catalog_edit" style="left:700px">{{ $t('user.editCourse.title') }}</a>
                                             <a @click="deleteChapter((index+1)+'.'+(subIndex+1))" target="_blank"
-                                                class="jb_btn jb_btn_60 fs14 catalog_edit" style="left:550px">删除</a>
+                                                class="jb_btn jb_btn_60 fs14 catalog_edit" style="left:550px">{{ $t('user.editCourse.delete') }}</a>
                                         </div>
                                         <div class="catalog_jindu catalog_tishi56">
                                             <div class="catalog_ressbar" data="706700298" style="cursor: pointer;">
@@ -103,7 +103,7 @@
                             </ul>
                             <div style="height:36px;margin-left:65%"><a href="javascript:;" class="jb_btn jb_btn_104 fs14 chapter_editorial"
                                 @click="addSubChapter(index)" style="position:absolute;margin-top:5px;">
-                                <i class="chapter_PlusIcon icon-edit"></i>添加子章节</a></div>
+                                <i class="chapter_PlusIcon icon-edit"></i>{{ $t('user.editCourse.addSubSection') }}</a></div>
                         </div>
                         <!-- 第二级结束 -->
                     </div>

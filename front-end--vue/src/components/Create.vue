@@ -5,7 +5,7 @@
         <div class="courseAddDiv" style="text-align:center">
           <a href="/#/createCourse" target="_blank" >
             <img src="../assets/style/image/courseAddBtn.png" style="height:130px;width:130px"><br>
-            点击创建课程
+            {{ $t('user.createCoursePage.createPngMes') }}
           </a>
         </div>
       </li>
@@ -13,7 +13,7 @@
         <div class="qExpress_padd qNima">
           <div class="qExpress_pic">
             <a :href="'/#/editCourse/'+value.courseNumber+'/chapter'" target="_blank">
-              <img :src="'/images/' + value.imagePath">
+              <img :src="'/api/images/' + value.imagePath">
             </a>
             <span></span>
           </div>
@@ -22,8 +22,8 @@
             <!-- <dd>{{ value.teacherSchool }} | {{ value.teacherName }}</dd> -->
           </dl>
           <div class="qExpress_state">
-            <span class="colorBlue fl">{{ value.state == 1 ? "进行中" : "已结束" }}</span>
-            <span class="colorGray fr">{{ value.learnNumber }}人已学</span>
+            <span class="colorBlue fl">{{ value.state == 1 ? $t('user.coursePage.inProgress') : $t('user.coursePage.haveEnd') }}</span>
+            <span class="colorGray fr">{{ value.learnNumber }}{{ $t('user.coursePage.learnMes') }}</span>
           </div>
         </div>
       </li>
@@ -43,7 +43,7 @@ export default {
   },
   methods:{
     getCreateCourseList: function(callback){
-      myCreateJs.getCourseByTeacherNumber(this.myMes.data.email).then(res=>{
+      myCreateJs.getCourseByTeacherNumber(this.myMes.data.userAccountNumber).then(res=>{
         this.createCourseList = res.data
         callback(res)
       })

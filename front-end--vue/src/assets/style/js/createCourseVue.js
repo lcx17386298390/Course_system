@@ -5,8 +5,9 @@ const createCourseJs = {
         let courseName = document.getElementById('courseName').value
         let courseIntroduction = document.getElementById('courseIntroduction').value
         let classHours = document.getElementById('classHours').value
+        let classesTab = document.getElementById('classesTab').value
+        let memberTab = this.getRadioVal()
         let endDate = document.getElementById('endDate').value
-
         // let config = {
         //     headers: {'Content-Type': 'multipart/form-data'}
         //  }
@@ -16,6 +17,8 @@ const createCourseJs = {
         params.append('file',this.file)
         params.append('courseIntroduction',courseIntroduction)
         params.append('classHours',classHours)
+        params.append('memberTab',memberTab)
+        params.append('classesTab',classesTab)
         params.append('endDate',endDate)
         params.append('teacherAccountNumber',teacherAccountNumber)
 
@@ -41,6 +44,14 @@ const createCourseJs = {
     getFile: function(event){
         this.file = event.target.files[0];
         console.log(event)
+    },
+    getRadioVal: function(){
+        let radios = document.getElementsByName("memberTab")
+        if(radios[0].checked){
+            return 0
+        }else{
+            return 1
+        }
     }
 }
 export default createCourseJs

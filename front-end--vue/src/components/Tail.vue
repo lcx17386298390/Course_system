@@ -20,8 +20,24 @@ export default {
     name: 'TailTest',
     methods:{
         changeVersion: function(){
-            this.$i18n.locale == 'en'? this.$i18n.locale ='zh': this.$i18n.locale ='en'
-        }
+            this.$i18n.locale == 'en'? this.handleCommand('ZH'): this.handleCommand('EN')
+            // this.$i18n.locale == 'en'? localStorage.setItem('lang',"zh"): localStorage.setItem('lang',"en")
+        },
+        handleCommand: function(command) {
+            if (command == "ZH") {
+                this.$i18n.locale = "zh";
+                localStorage.setItem('lang', "zh")
+                //  console.log(this.$i18n)
+            } else if (command == "FT") {
+                this.$i18n.locale = "ft";
+                localStorage.setItem('lang', "ft")
+                // console.log(2)
+            } else if (command == "EN") {
+                // console.log(3)
+                this.$i18n.locale = "en";
+                localStorage.setItem('lang', "en")
+            }
+        },
     }
 }
 </script>

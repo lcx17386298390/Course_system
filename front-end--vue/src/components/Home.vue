@@ -28,7 +28,9 @@
                 position:"",
                 school:"",
                 type:1,
-                userPaw:""
+                userPaw:"",
+                memberTab:'',
+                userAccountNumber:''
               }
             }
         }

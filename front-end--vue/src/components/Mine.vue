@@ -4,7 +4,7 @@
         <div class="g-doc f-cb m-center">
             <div class="MyOpenNav_navBody" data-v-87842d9c="">
                 <dl class="mine" data-v-87842d9c="">
-                    <dd data-v-87842d9c=""><img :src="myMes.data.imagePath" alt="" srcset="" class="avator" data-v-87842d9c=""></dd>
+                    <dd data-v-87842d9c=""><img :src="'/api/images/'+myMes.data.imagePath" alt="" srcset="" class="avator" data-v-87842d9c=""></dd>
                     <!---->
                     <dt data-v-87842d9c="">
                         <h4 class="mine-login" data-v-87842d9c="">{{ myMes.data.name }}</h4>
@@ -69,7 +69,8 @@ export default {
                 position:"",
                 school:"",
                 type:1,
-                userPaw:""
+                userPaw:"",
+                userAccountNumber: ""
               }
             }
         }

@@ -5,7 +5,7 @@
             <dl class="classDl">
                 <dt>
                     <a href="javascript:void(0);" onclick="$(&#39;#tpsubmit&#39;).submit();">
-                        <img width="100%" height="100%" :src="'/'+courseMes.data.imagePath">
+                        <img width="100%" height="100%" :src="'/api/images/'+courseMes.data.imagePath">
                         <!-- <span>课程门户<i class="left_join"></i></span> -->
                     </a>
                 </dt>
@@ -118,15 +118,15 @@
                 <ul>
                   <li opentype="0" dataname="zj" pageheader="2" class="curNav">
                     <a href="javascript:void(0);" title="章节" data-url="/mooc2-ans/mycourse/tchcourse">
-                      <i class="zj"></i>章节
+                      <i class="zj"></i>{{ $t('user.editCourse.chapter') }}
                     </a>
                   </li>
                 </ul>
             </div>
         </div>
-        <form id="tpsubmit" action="https://mooc1.chaoxing.com/course/232550283.html" target="_blank" method="post">
+        <!-- <form id="tpsubmit" action="https://mooc1.chaoxing.com/course/232550283.html" target="_blank" method="post">
             <input type="hidden" name="edit" value="true">
-        </form>
+        </form> -->
         <div id="ascrail2000" class="nicescroll-rails nicescroll-rails-vr"
             style="width: 8px; z-index: 2; cursor: default; position: absolute; top: 52px; left: 172px; height: 596px; display: block; opacity: 0;">
             <div class="nicescroll-cursors"

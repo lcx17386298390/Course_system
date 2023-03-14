@@ -5,7 +5,7 @@
         <div class="qExpress_padd qNima">
           <div class="qExpress_pic">
             <a :href="'/#/coursePage/' + value.courseNumber " target="_blank">
-              <img :src="'/images/' + value.imagePath">
+              <img :src="'/api/images/' + value.imagePath">
             </a>
             <span></span>
           </div>
@@ -15,8 +15,8 @@
             <!-- <dd>{{ value.teacherSchool }} | {{ value.teacherName }}</dd> -->
           </dl>
           <div class="qExpress_state">
-            <span class="colorBlue fl">{{ value.state == 1 ? "进行中" : "已结束" }}</span>
-            <span class="colorGray fr">{{ value.learnNumber }}人已学</span>
+            <span class="colorBlue fl">{{ value.state == 1 ? $t('user.coursePage.inProgress') : $t('user.coursePage.haveEnd') }}</span>
+            <span class="colorGray fr">{{ value.learnNumber }}{{ $t('user.coursePage.learnMes') }}</span>
           </div>
         </div>
       </li>
@@ -36,7 +36,7 @@ export default {
   },
   methods:{
     getLearnCourseList: function(callback){
-      myCreateJs.getLearnCourseByTeacherNumber(this.myMes.data.email).then(res=>{
+      myCreateJs.getLearnCourseByTeacherNumber(this.myMes.data.userAccountNumber).then(res=>{
         this.LearnCourseList = res.data
         callback(res)
       })

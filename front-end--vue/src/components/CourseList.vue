@@ -9,17 +9,17 @@
                         <span class="qFicReen_name">{{ $t('user.discipline.discipline') }}</span>
                         <div class="qFicReen_con">
                             <ul class="clearAfter" id="coursecategory">
-                                <li class="active" value="0"><a>{{ $t('user.discipline.all') }}</a></li>
-                                <li value="7754" data-value="C4"><a>{{ $t('user.discipline.medicalScience') }}</a></li>
-                                <li value="7745" data-value="C4"><a>{{ $t('user.discipline.philosophy') }}</a></li>
-                                <li value="7752" data-value="C4"><a>{{ $t('user.discipline.engineering') }}</a></li>
-                                <li value="7748" data-value="C4"><a>{{ $t('user.discipline.pedagogy') }}</a></li>
-                                <li value="7749" data-value="C4"><a>{{ $t('user.discipline.literature') }}</a></li>
-                                <li value="7747" data-value="C4"><a>{{ $t('user.discipline.jurisprudence') }}</a></li>
-                                <li value="7751" data-value="C4"><a>{{ $t('user.discipline.neoConfucianism') }}</a></li>
-                                <li value="7756" data-value="C4"><a>{{ $t('user.discipline.management') }}</a></li>
-                                <li value="7757" data-value="C4"><a>{{ $t('user.discipline.art') }}</a></li>
-                            </ul>
+                                <li class="active" @click="classesTabClick(0)" value="0"><a>{{ $t('user.discipline.all') }}</a></li>
+                                <li value="7754"   @click="classesTabClick(1)" data-value="C4"><a>{{ $t('user.discipline.medicalScience') }}</a></li>
+                                <li value="7745"   @click="classesTabClick(2)" data-value="C4"><a>{{ $t('user.discipline.philosophy') }}</a></li>
+                                <li value="7752"   @click="classesTabClick(3)" data-value="C4"><a>{{ $t('user.discipline.engineering') }}</a></li>
+                                <li value="7748"   @click="classesTabClick(4)" data-value="C4"><a>{{ $t('user.discipline.pedagogy') }}</a></li>
+                                <li value="7749"   @click="classesTabClick(5)" data-value="C4"><a>{{ $t('user.discipline.literature') }}</a></li>
+                                <li value="7747"   @click="classesTabClick(6)" data-value="C4"><a>{{ $t('user.discipline.jurisprudence') }}</a></li>
+                                <li value="7751"   @click="classesTabClick(7)" data-value="C4"><a>{{ $t('user.discipline.neoConfucianism') }}</a></li>
+                                <li value="7756"   @click="classesTabClick(8)" data-value="C4"><a>{{ $t('user.discipline.management') }}</a></li>
+                                <li value="7757"   @click="classesTabClick(9)" data-value="C4"><a>{{ $t('user.discipline.art') }}</a></li>
+                            </ul>  
                         </div>
                     </div>
                 </div>
@@ -406,7 +406,7 @@
                     <div class="qExpress_padd qNima">
                         <div class="qExpress_pic">
                             <a :href="'/#/coursePage/'+value.courseNumber" target="_blank">
-                                <img :src="'/images/'+value.imagePath">
+                                <img :src="'/api/images/'+value.imagePath">
                             </a>
                             <span></span>
                         </div>
@@ -415,8 +415,8 @@
                             <dd>{{value.teacherSchool}} | {{value.teacherName}}</dd>
                         </dl>
                         <div class="qExpress_state">
-                            <span class="colorBlue fl">{{value.state==1?"进行中":"已结束"}}</span>
-                            <span class="colorGray fr">{{value.learnNumber}}人已学</span>
+                            <span class="colorBlue fl">{{value.state==1?$t('user.coursePage.inProgress') : $t('user.coursePage.haveEnd')}}</span>
+                            <span class="colorGray fr">{{value.learnNumber}}{{ $t('user.coursePage.learnMes') }}</span>
                         </div>
                     </div>
                 </li>
@@ -450,9 +450,11 @@ export default {
                 }
             },
             pageCourseList:[],
+            classesTabList:[],
             pageCouseBeginNum:0,
             pageNum:1,
-            that: this
+            that: this,
+            lastTypeBtnIndex:0
         }
     },
     methods:{
@@ -460,7 +462,8 @@ export default {
             courselistJs.courselistAccess().then(res=>{
                 // 总课程数据
                 this.successMes = res
-                this.pageCourseList = this.successMes.data.allCourseList.slice(this.pageCouseBeginNum,this.pageCouseBeginNum+20)
+                this.classesTabList = this.successMes.data.allCourseList
+                this.pageCourseList = this.classesTabList.slice(this.pageCouseBeginNum,this.pageCouseBeginNum+20)
                 callback(res)
                 let num = this.successMes.data.allCourseList.length
                 this.initialPageBtn(num,this.that)
@@ -484,7 +487,7 @@ export default {
                 let prePageBtn = document.getElementsByClassName("xl-prevPage")[0]
                 prePageBtn.className = 'xl-prevPage'
             }
-            if(beginNum==Math.ceil(this.successMes.data.allCourseList.length/20)){
+            if(beginNum==Math.ceil(this.classesTabList.length/20)||(Math.ceil(this.classesTabList.length/20)==0)){
                 let nextPageBtn = document.getElementsByClassName("xl-nextPage")[0]
                 nextPageBtn.className = 'xl-nextPage xl-disabled'
             }else{
@@ -497,19 +500,24 @@ export default {
             pageBtn[beginNum-1].className = 'xl-active'
             beginNum=(beginNum-1)*20
             this.pageCouseBeginNum = beginNum
-            this.pageCourseList = this.successMes.data.allCourseList.slice(this.pageCouseBeginNum,this.pageCouseBeginNum+20)
+            this.pageCourseList = this.classesTabList.slice(this.pageCouseBeginNum,this.pageCouseBeginNum+20)
         },
         // 跳转按钮的初始化
-        initialPageBtn: function(num,that){
-            let btnDivHTML = ""
-            btnDivHTML+="<li class='xl-prevPage  xl-disabled' onclick='prePage()'>"+that.$t('user.prePage')+"</li>"
-            let jumpBtnDiv = document.getElementsByName("jumpBtnDiv")[0]
-            for(let i = 1;i<=Math.ceil(num/20);i++){
-                btnDivHTML+="<li onclick='resetBeginNum("+i+")' name='pageBtn'>"+i+"</li>"
+        initialPageBtn: function (num, that) {
+            try {
+                let btnDivHTML = ""
+                btnDivHTML += "<li class='xl-prevPage  xl-disabled' onclick='prePage()'>" + that.$t('user.prePage') + "</li>"
+                let jumpBtnDiv = document.getElementsByName("jumpBtnDiv")[0]
+                for (let i = 1; i <= Math.ceil(num / 20); i++) {
+                    btnDivHTML += "<li onclick='resetBeginNum(" + i + ")' name='pageBtn'>" + i + "</li>"
+                }
+                btnDivHTML += "<li class='xl-nextPage' onclick='nextPage()'>" + that.$t('user.nextPage') + "</li><li class='xl-jumpText xl-disabled'>" + that.$t('user.jumpTo') + "<input type='number' id='xlJumpNum'>" + that.$t('user.page') + "</li><li class='xl-jumpButton' onclick='jumpPage()'>" + that.$t('user.determine') + "</li>"
+                jumpBtnDiv.innerHTML = btnDivHTML
+                document.getElementsByName("pageBtn")[0].className = "xl-active"
+            } catch (err){
+                let s
             }
-            btnDivHTML+="<li class='xl-nextPage' onclick='nextPage()'>"+that.$t('user.nextPage')+"</li><li class='xl-jumpText xl-disabled'>"+that.$t('user.jumpTo')+"<input type='number' id='xlJumpNum'>"+that.$t('user.page')+"</li><li class='xl-jumpButton' onclick='jumpPage()'>"+that.$t('user.determine')+"</li>"
-            jumpBtnDiv.innerHTML = btnDivHTML
-            document.getElementsByName("pageBtn")[0].className = "xl-active"
+
         },
         prePage: function(){
             if(this.pageNum==1){
@@ -519,7 +527,7 @@ export default {
             this.resetBeginNum(this.pageNum-1)
         },
         nextPage: function(){
-            if(this.pageNum>=Math.ceil(this.successMes.data.allCourseList.length/20)){
+            if(this.pageNum>=Math.ceil(this.classesTabList.length/20)){
                 return
             }
             // this.pageNum+=1
@@ -527,11 +535,34 @@ export default {
         },
         jumpPage: function(){
             let num = document.getElementById('xlJumpNum').value
-            if(num<1||num>Math.ceil(this.successMes.data.allCourseList.length/20)){
+            if(num<1||num>Math.ceil(this.classesTabList.length/20)){
                 alert("页数错误")
             }else{
                 this.resetBeginNum(num)
             }
+        },
+        classesTabClick: function(index){
+            let typeBtns = document.getElementsByClassName('clearAfter')[0].children;
+            typeBtns[this.lastTypeBtnIndex].className = ''
+            typeBtns[index].className = 'active'
+            this.lastTypeBtnIndex = index
+
+            this.pageNum = 1
+            if(index==0){
+                this.classesTabList=this.successMes.data.allCourseList
+            }else{
+                this.classesTabList = []
+                for (let i = 0; i < this.successMes.data.allCourseList.length; i++) {
+                    if (this.successMes.data.allCourseList[i].classesTab == index) {
+                        this.classesTabList[this.classesTabList.length] = this.successMes.data.allCourseList[i]
+                    }
+                }
+                console.log(this.classesTabList)
+            }
+            this.pageCourseList = this.classesTabList.slice(this.pageCouseBeginNum,this.pageCouseBeginNum+20)
+            let num = this.classesTabList.length
+            this.initialPageBtn(num,this.that)
+            this.resetBeginNum(this.pageNum)
         }
     },
     created(){

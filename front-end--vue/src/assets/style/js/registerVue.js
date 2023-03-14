@@ -30,7 +30,10 @@ const registerModule = {
             phoneInput.style.borderColor = "#e3e8f0"
             document.getElementById("phoneMsg").innerText = ""
         }
-
+        if(messageCode.value==null||messageCode.value==''){
+            alert('请填写验证码')
+            return
+        }
         
         await axios.get("/codeValidation",{
             params:{
@@ -73,7 +76,8 @@ const registerModule = {
     },
 
     // 点击发送验证码
-    sendCode: function(that){
+    sendCode: async function(that){
+        let alertMes = ''
         let sendCodeBtn = document.getElementById("sendCodeBtn")
         let showcountdown = document.getElementById("showcountdown")
         let emailInput = document.getElementById("email")
@@ -94,15 +98,23 @@ const registerModule = {
             }
         }
 
-        sendCodeBtn.style.display = "none" 
-        showcountdown.style.display = "block" 
-
-        axios.get("/sendCode/"+emailInput.value)
+        await axios.get("/sendCode/"+emailInput.value)
         .then((res=>{
                 console.log(res)
+                if(res.data.status == 500){
+                    alertMes = 500
+                }
         })).catch(error=>{
                 alert(error)
         })
+
+        if(alertMes==500){
+            alert('账户已存在，请重新填写')
+            return 
+        }
+
+        sendCodeBtn.style.display = "none" 
+        showcountdown.style.display = "block" 
         
         let time = 60
         let mySetTime = setInterval(()=>{
@@ -132,18 +144,23 @@ const registerModule = {
             introductionDiv.style.display = "block"
         }
     },
-    submitBtn: function () {
+    submitBtn: function (that) {
         // let form = document.getElementById("mesForm")
         // form.onsubmit()
         // this.$router.push("/")
-        let email = document.getElementsByName("email")[0].value;
-        let userPaw = document.getElementsByName("userPaw")[0].value;
+        let email = document.getElementsByName("email")[0].value.trim();
+        let userPaw = document.getElementsByName("userPaw")[0].value.trim();
         let userImage = document.getElementsByName("userImage")[0].files[0];
-        let name = document.getElementsByName("name")[0].value;
-        let school = document.getElementsByName("school")[0].value;
+        let name = document.getElementsByName("name")[0].value.trim();
+        let school = document.getElementsByName("school")[0].value.trim();
         let type = document.getElementsByName("type")[0].value;
-        let position = document.getElementsByName("position")[0].value;
-        let introduction = document.getElementsByName("introduction")[0].value;
+        let position = document.getElementsByName("position")[0].value.trim();
+        let introduction = document.getElementsByName("introduction")[0].value.trim();
+
+        if(email==null||userPaw==null||userImage==null||name==null||school==null||type==null){
+            alert('请完整填写信息')
+            return 
+        }
 
         let params = new FormData()
         params.append("email",email)
@@ -154,6 +171,15 @@ const registerModule = {
         params.append("type",type)
         params.append("position",position)
         params.append("introduction",introduction)
+        for(let i = 0;i<3;i++){
+            if(that.hobbys[i] == undefined){
+                // params.append("hobby",null)
+                that.hobbys[i] = null
+            }
+            params.append("hobby",that.hobbys[i])
+        }
+        console.log('--',that.hobbys[0],that.hobbys[1],that.hobbys[2])
+        console.log(params)
 
         axios.post("/upUserMes",params,{
             headers: {
